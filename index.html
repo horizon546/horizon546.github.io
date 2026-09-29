@@ -5,95 +5,125 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>火影忍者手游武斗赛BP工具</title>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&display=swap');
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:"Microsoft YaHei",-apple-system,sans-serif;background:#0d1117;color:#e6edf3;padding:12px;min-height:100vh}
-header{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px;background:#161b22;padding:10px;border-radius:10px;border:1px solid #30363d}
-h1{font-size:16px;color:#f0c040;margin-right:4px;white-space:nowrap}
-.name-input{background:#0d1117;border:1px solid #30363d;color:#fff;padding:7px 10px;border-radius:6px;width:130px;font-size:13px;outline:none}
-.name-input.blue{border-color:#2a6fdb}
-.name-input.red{border-color:#db2a2a}
-.name-input:focus{border-color:#58a6ff}
-#status{flex:1;background:#0d1117;padding:8px 12px;border-radius:6px;font-weight:bold;color:#58a6ff;min-width:180px;font-size:13px;border:1px solid #30363d}
-button{background:#21262d;color:#e6edf3;border:1px solid #30363d;padding:7px 12px;border-radius:6px;cursor:pointer;font-size:13px;transition:.15s;white-space:nowrap}
-button:hover{background:#30363d}
-button.primary{background:#238636;border-color:#2ea043}
-button.primary:hover{background:#2ea043}
-button.danger{background:#a03030;border-color:#c04040}
-button.danger:hover{background:#c04040}
-button.avatar-btn{background:#6f42c1;border-color:#8957e5}
-button.avatar-btn:hover{background:#8957e5}
-button.avatar-btn.active{background:#f0c040;color:#0d1117;border-color:#f0c040;font-weight:bold}
-label.file-btn{background:#21262d;color:#e6edf3;border:1px solid #30363d;padding:7px 12px;border-radius:6px;cursor:pointer;font-size:13px;transition:.15s;display:inline-block}
-label.file-btn:hover{background:#30363d}
-main{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
-.side{background:#161b22;border-radius:10px;padding:12px;border:2px solid transparent}
-.side.blue{border-color:#2a6fdb}
-.side.red{border-color:#db2a2a}
-.side h2{font-size:14px;margin-bottom:10px;text-align:center;padding-bottom:8px;border-bottom:1px solid #30363d}
-.side h2.blue{color:#58a6ff}
-.side h2.red{color:#ff7b72}
-.slot-row{margin:8px 0}
-.slot-row>b{color:#8b949e;font-size:12px;display:block;margin-bottom:4px}
-.mini-grid{display:flex;flex-wrap:wrap;gap:5px;min-height:26px}
-.mini-card{width:44px;height:44px;border-radius:6px;background:#0d1117;border:2px solid #30363d;overflow:hidden;display:flex;align-items:center;justify-content:center;position:relative}
+body{font-family:"Noto Sans SC","Microsoft YaHei",-apple-system,sans-serif;background:#080b12;background-image:radial-gradient(circle at 50% -20%, #1c2642 0%, #080b12 60%);color:#c9d1d9;padding:16px;min-height:100vh;overflow-x:hidden}
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:#30363d;border-radius:10px}
+::-webkit-scrollbar-thumb:hover{background:#f0c040}
+
+header{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:16px;background:rgba(22,27,34,.75);backdrop-filter:blur(12px);padding:12px 16px;border-radius:14px;border:1px solid rgba(240,192,64,.15);box-shadow:0 8px 32px rgba(0,0,0,.5)}
+h1{font-size:18px;color:#f0c040;margin-right:8px;white-space:nowrap;text-shadow:0 0 12px rgba(240,192,64,.4);letter-spacing:1px}
+.name-input{background:rgba(13,17,23,.8);border:1px solid rgba(48,54,61,.8);color:#fff;padding:8px 12px;border-radius:8px;width:130px;font-size:13px;outline:none;transition:.2s}
+.name-input.blue{border-color:rgba(59,130,246,.5)}
+.name-input.red{border-color:rgba(239,68,68,.5)}
+.name-input:focus{border-color:#f0c040;box-shadow:0 0 10px rgba(240,192,64,.3)}
+#status{flex:1;background:rgba(13,17,23,.8);padding:8px 14px;border-radius:8px;font-weight:700;color:#f0c040;min-width:180px;font-size:13px;border:1px solid rgba(48,54,61,.8);letter-spacing:.5px}
+button{background:rgba(33,38,45,.8);color:#e6edf3;border:1px solid rgba(48,54,61,.8);padding:8px 14px;border-radius:8px;cursor:pointer;font-size:13px;font-weight:700;transition:.2s;white-space:nowrap;backdrop-filter:blur(4px)}
+button:hover{background:rgba(48,54,61,.9);border-color:rgba(240,192,64,.5);color:#f0c040;transform:translateY(-1px)}
+button.primary{background:rgba(35,134,54,.8);border-color:rgba(46,160,67,.8);color:#fff}
+button.primary:hover{background:rgba(46,160,67,.9);border-color:#2ea043;box-shadow:0 0 15px rgba(46,160,67,.4)}
+button.danger{background:rgba(160,48,48,.8);border-color:rgba(192,64,64,.8);color:#fff}
+button.danger:hover{background:rgba(192,64,64,.9);border-color:#c04040;box-shadow:0 0 15px rgba(192,64,64,.4)}
+button.avatar-btn{background:rgba(111,66,193,.8);border-color:rgba(137,87,229,.8);color:#fff}
+button.avatar-btn:hover{background:rgba(137,87,229,.9);border-color:#8957e5;box-shadow:0 0 15px rgba(137,87,229,.4)}
+button.avatar-btn.active{background:#f0c040;color:#0d1117;border-color:#f0c040;font-weight:900;box-shadow:0 0 20px rgba(240,192,64,.6)}
+label.file-btn{background:rgba(33,38,45,.8);color:#e6edf3;border:1px solid rgba(48,54,61,.8);padding:8px 14px;border-radius:8px;cursor:pointer;font-size:13px;font-weight:700;transition:.2s;display:inline-block;backdrop-filter:blur(4px)}
+label.file-btn:hover{background:rgba(48,54,61,.9);border-color:rgba(240,192,64,.5);color:#f0c040}
+
+main{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.side{background:rgba(22,27,34,.7);border-radius:16px;padding:16px;border:1px solid rgba(48,54,61,.6);backdrop-filter:blur(8px);transition:.3s;position:relative;overflow:hidden}
+.side.blue{border-color:rgba(59,130,246,.4);box-shadow:0 0 30px rgba(59,130,246,.1) inset}
+.side.blue:hover{border-color:rgba(59,130,246,.8);box-shadow:0 0 30px rgba(59,130,246,.2) inset,0 0 20px rgba(59,130,246,.2)}
+.side.red{border-color:rgba(239,68,68,.4);box-shadow:0 0 30px rgba(239,68,68,.1) inset}
+.side.red:hover{border-color:rgba(239,68,68,.8);box-shadow:0 0 30px rgba(239,68,68,.2) inset,0 0 20px rgba(239,68,68,.2)}
+.side h2{font-size:15px;margin-bottom:12px;text-align:center;padding-bottom:10px;border-bottom:1px solid rgba(48,54,61,.6);letter-spacing:2px}
+.side h2.blue{color:#58a6ff;text-shadow:0 0 10px rgba(88,166,255,.5)}
+.side h2.red{color:#ff7b72;text-shadow:0 0 10px rgba(255,123,114,.5)}
+.slot-row{margin-bottom:12px}
+.slot-row>b{color:#8b949e;font-size:11px;font-weight:700;display:block;margin-bottom:6px;letter-spacing:1px;text-transform:uppercase}
+.mini-grid{display:flex;flex-wrap:wrap;gap:6px;min-height:44px;align-items:center}
+.mini-card{width:48px;height:48px;border-radius:8px;background:rgba(13,17,23,.8);border:2px solid rgba(48,54,61,.8);overflow:hidden;display:flex;align-items:center;justify-content:center;position:relative;transition:.2s}
 .mini-card img{width:100%;height:100%;object-fit:cover}
-.mini-card.ban{border-color:#a03030;opacity:.75}
-.mini-card.pick-blue{border-color:#2a6fdb}
-.mini-card.pick-red{border-color:#db2a2a}
-.pool{background:#161b22;border-radius:10px;padding:12px;border:1px solid #30363d}
-.tabs{display:flex;gap:6px;margin-bottom:10px}
-.tab{padding:7px 16px;font-size:13px}
-.tab.active{background:#1f6feb;color:#fff;border-color:#1f6feb}
-.filters{display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap}
-.filters input,.filters select{background:#0d1117;border:1px solid #30363d;color:#e6edf3;padding:7px 10px;border-radius:6px;font-size:13px;outline:none}
+.mini-card.ban{border-color:#a03030;opacity:.6;filter:grayscale(.6)}
+.mini-card.pick-blue{border-color:#3b82f6;box-shadow:0 0 10px rgba(59,130,246,.3)}
+.mini-card.pick-red{border-color:#ef4444;box-shadow:0 0 10px rgba(239,68,68,.3)}
+
+.pool{background:rgba(22,27,34,.7);border-radius:16px;padding:16px;border:1px solid rgba(48,54,61,.6);backdrop-filter:blur(8px);margin-bottom:16px}
+.tabs{display:flex;gap:8px;margin-bottom:14px}
+.tab{padding:8px 20px;font-size:13px;font-weight:700;border-radius:8px;letter-spacing:1px}
+.tab.active{background:linear-gradient(135deg, #1f6feb, #3b82f6);color:#fff;border-color:#3b82f6;box-shadow:0 0 15px rgba(59,130,246,.4)}
+.filters{display:flex;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+.filters input,.filters select{background:rgba(13,17,23,.8);border:1px solid rgba(48,54,61,.8);color:#e6edf3;padding:8px 12px;border-radius:8px;font-size:13px;outline:none;transition:.2s}
 .filters input{flex:1;min-width:150px}
-.filters input:focus,.filters select:focus{border-color:#58a6ff}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:8px;max-height:460px;overflow-y:auto;padding-right:4px}
-.card{background:#0d1117;border:1px solid #30363d;border-radius:8px;padding:7px 4px;cursor:pointer;text-align:center;position:relative;font-size:11px;transition:.15s;overflow:hidden}
-.card:hover{background:#1c2128;transform:translateY(-2px);border-color:#58a6ff}
-.card.used{opacity:.35;cursor:not-allowed;filter:grayscale(.8)}
-.card.used:hover{transform:none;border-color:#30363d}
-.card.avatar-mode{cursor:crosshair;border-color:#8957e5}
-.card.avatar-mode:hover{border-color:#f0c040;box-shadow:0 0 10px rgba(240,192,64,.4)}
-.card .thumb{width:64px;height:64px;margin:0 auto 5px;border-radius:6px;overflow:hidden;background:#161b22;display:flex;align-items:center;justify-content:center}
+.filters input:focus,.filters select:focus{border-color:#f0c040;box-shadow:0 0 10px rgba(240,192,64,.2)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:10px;max-height:520px;overflow-y:auto;padding-right:6px}
+
+.card{background:rgba(13,17,23,.8);border:1px solid rgba(48,54,61,.6);border-radius:12px;padding:10px 6px;cursor:pointer;text-align:center;position:relative;font-size:11px;transition:.25s cubic-bezier(.4,0,.2,1);overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;min-height:110px}
+.card:hover{background:rgba(30,38,50,.9);transform:translateY(-4px);border-color:rgba(240,192,64,.5);box-shadow:0 8px 20px rgba(0,0,0,.4),0 0 15px rgba(240,192,64,.15)}
+.card.used{opacity:.35;cursor:not-allowed;filter:grayscale(.8);transform:none!important;border-color:rgba(48,54,61,.6)!important;box-shadow:none!important}
+.card.used:hover{transform:none!important;border-color:rgba(48,54,61,.6)!important}
+.card.avatar-mode{cursor:crosshair;border-color:rgba(137,87,229,.6)}
+.card.avatar-mode:hover{border-color:#f0c040;box-shadow:0 0 20px rgba(240,192,64,.4),0 0 40px rgba(240,192,64,.1)}
+.card .thumb{width:70px;height:70px;margin-bottom:6px;border-radius:10px;overflow:hidden;background:rgba(22,27,34,.8);display:flex;align-items:center;justify-content:center;border:1px solid rgba(48,54,61,.4);flex-shrink:0}
 .card .thumb img{width:100%;height:100%;object-fit:cover}
-.card .name{font-weight:bold;line-height:1.2;margin-bottom:2px;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;min-height:26px;word-break:break-all}
-.card .rank{color:#8b949e;font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.card .badge{position:absolute;top:3px;right:3px;font-size:9px;padding:1px 5px;border-radius:4px;font-weight:bold;z-index:2}
-.badge.ban{background:#a03030;color:#fff}
-.badge.blue{background:#2a6fdb;color:#fff}
-.badge.red{background:#db2a2a;color:#fff}
-.badge.blue+.badge.red{top:22px}
-.history-panel{background:#161b22;border-radius:10px;padding:12px;margin-top:12px;border:1px solid #30363d}
-.history-panel h3{font-size:14px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;color:#f0c040}
-.history-item{background:#0d1117;border:1px solid #30363d;border-radius:6px;padding:8px 10px;margin-bottom:6px;cursor:pointer;font-size:12px;transition:.15s}
-.history-item:hover{background:#1c2128;border-color:#58a6ff}
-.history-time{color:#8b949e;font-size:11px}
-.history-names{font-weight:bold;color:#f0c040;margin:3px 0}
-.history-summary{color:#8b949e;font-size:11px;line-height:1.5}
-.history-actions{margin-top:6px;display:flex;gap:6px}
-.history-actions button{font-size:11px;padding:3px 8px}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.78);display:none;align-items:center;justify-content:center;z-index:99;padding:16px}
-.modal.show{display:flex}
-.modal-content{background:#161b22;padding:20px;border-radius:12px;width:380px;max-width:100%;display:flex;flex-direction:column;gap:12px;border:1px solid #30363d;max-height:90vh;overflow-y:auto}
-.modal-content h3{font-size:16px;color:#f0c040}
-.modal-content label{display:flex;flex-direction:column;gap:6px;font-size:13px;color:#8b949e}
-.modal-content input,.modal-content select{background:#0d1117;border:1px solid #30363d;color:#e6edf3;padding:9px;border-radius:6px;font-size:13px;outline:none;width:100%}
-.modal-content input:focus,.modal-content select:focus{border-color:#58a6ff}
-.modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:6px;flex-wrap:wrap}
-.preview-img{width:100px;height:100px;object-fit:cover;border-radius:8px;border:1px solid #30363d;margin-top:6px;align-self:center}
-.hint{font-size:11px;color:#6e7681;line-height:1.5;margin-top:4px}
-::-webkit-scrollbar{width:8px;height:8px}
-::-webkit-scrollbar-track{background:#0d1117}
-::-webkit-scrollbar-thumb{background:#30363d;border-radius:4px}
-::-webkit-scrollbar-thumb:hover{background:#484f58}
+.card .name{font-weight:700;line-height:1.3;margin-bottom:2px;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;min-height:28px;word-break:break-all;color:#e6edf3;font-size:11px}
+.card .rank{color:#8b949e;font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:700;letter-spacing:1px}
+.card .badge{position:absolute;top:6px;right:6px;font-size:9px;padding:2px 6px;border-radius:4px;font-weight:900;z-index:2;letter-spacing:1px;box-shadow:0 2px 8px rgba(0,0,0,.5)}
+.badge.ban{background:#dc2626;color:#fff}
+.badge.blue{background:#2563eb;color:#fff}
+.badge.red{background:#dc2626;color:#fff}
+
+.history-panel{background:rgba(22,27,34,.7);border-radius:16px;padding:16px;border:1px solid rgba(48,54,61,.6);backdrop-filter:blur(8px)}
+.history-panel h3{font-size:14px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;color:#f0c040;letter-spacing:1px}
+.history-item{background:rgba(13,17,23,.6);border:1px solid rgba(48,54,61,.6);border-left:3px solid #f0c040;border-radius:8px;padding:10px 14px;margin-bottom:8px;font-size:12px;transition:.2s}
+.history-item:hover{background:rgba(30,38,50,.8);border-color:rgba(240,192,64,.4);transform:translateX(4px)}
+.history-time{color:#8b949e;font-size:11px;font-weight:700}
+.history-names{font-weight:900;color:#f0c040;margin:4px 0;font-size:13px}
+.history-result{margin:6px 0;padding:6px 12px;border-radius:6px;font-weight:900;font-size:12px;display:inline-block;letter-spacing:1px}
+.history-result.blue{background:rgba(59,130,246,.15);color:#58a6ff;border:1px solid rgba(59,130,246,.4)}
+.history-result.red{background:rgba(239,68,68,.15);color:#ff7b72;border:1px solid rgba(239,68,68,.4)}
+.history-result.none{background:rgba(139,148,158,.1);color:#8b949e;border:1px solid rgba(139,148,158,.3)}
+.history-summary{color:#8b949e;font-size:11px;line-height:1.6}
+.history-actions{margin-top:8px;display:flex;gap:8px;flex-wrap:wrap}
+.history-actions button{font-size:11px;padding:4px 10px;font-weight:700}
+
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;z-index:99;padding:16px}
+.modal.show{display:flex;animation:fadeIn .2s ease}
+@keyframes fadeIn{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}
+.modal-content{background:rgba(22,27,34,.95);padding:24px;border-radius:16px;width:420px;max-width:100%;display:flex;flex-direction:column;gap:14px;border:1px solid rgba(240,192,64,.2);box-shadow:0 20px 60px rgba(0,0,0,.8);max-height:90vh;overflow-y:auto}
+.modal-content h3{font-size:16px;color:#f0c040;letter-spacing:2px;text-align:center;text-shadow:0 0 10px rgba(240,192,64,.3)}
+.modal-content label{display:flex;flex-direction:column;gap:8px;font-size:13px;color:#8b949e;font-weight:700}
+.modal-content input,.modal-content select{background:rgba(13,17,23,.8);border:1px solid rgba(48,54,61,.8);color:#e6edf3;padding:10px 12px;border-radius:8px;font-size:13px;outline:none;width:100%;transition:.2s}
+.modal-content input:focus,.modal-content select:focus{border-color:#f0c040;box-shadow:0 0 12px rgba(240,192,64,.2)}
+.modal-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:8px;flex-wrap:wrap}
+.preview-img{width:110px;height:110px;object-fit:cover;border-radius:12px;border:2px solid rgba(240,192,64,.3);margin-top:8px;align-self:center;box-shadow:0 8px 20px rgba(0,0,0,.5)}
+.hint{font-size:11px;color:#6e7681;line-height:1.6;margin-top:6px;background:rgba(13,17,23,.6);padding:8px 10px;border-radius:6px;border-left:3px solid #f0c040}
+
+/* 赛果选择按钮 */
+.choice-group{display:flex;gap:8px;flex-wrap:wrap}
+.choice-btn{flex:1;min-width:80px;padding:12px 8px;background:rgba(13,17,23,.8);border:2px solid rgba(48,54,61,.8);border-radius:10px;cursor:pointer;transition:.2s;font-weight:700;font-size:13px;color:#c9d1d9;text-align:center}
+.choice-btn:hover{background:rgba(30,38,50,.9);border-color:rgba(240,192,64,.4);transform:translateY(-2px)}
+.choice-btn.active{font-weight:900;box-shadow:0 0 15px rgba(240,192,64,.3)}
+.choice-btn[data-winner="blue"].active{background:rgba(59,130,246,.2);border-color:#3b82f6;color:#58a6ff;box-shadow:0 0 15px rgba(59,130,246,.4)}
+.choice-btn[data-winner="red"].active{background:rgba(239,68,68,.2);border-color:#ef4444;color:#ff7b72;box-shadow:0 0 15px rgba(239,68,68,.4)}
+.choice-btn[data-result].active{background:rgba(240,192,64,.15);border-color:#f0c040;color:#f0c040}
+.section-title{font-size:12px;color:#8b949e;font-weight:900;letter-spacing:1.5px;margin-top:4px;text-transform:uppercase}
+
 @media (max-width:720px){
-  main{grid-template-columns:1fr}
-  .grid{grid-template-columns:repeat(auto-fill,minmax(80px,1fr));max-height:340px}
-  .card .thumb{width:54px;height:54px}
-  h1{font-size:14px}
+  body{padding:8px}
+  main{grid-template-columns:1fr;gap:10px}
+  header{padding:10px;gap:6px}
+  h1{font-size:15px;width:100%;text-align:center;margin-bottom:4px}
   .name-input{flex:1;min-width:0;width:auto}
-  #status{order:99;flex-basis:100%}
+  #status{order:99;flex-basis:100%;font-size:12px}
+  .grid{grid-template-columns:repeat(auto-fill,minmax(80px,1fr));max-height:400px}
+  .card .thumb{width:56px;height:56px}
+  .card{min-height:100px}
+  .modal-content{padding:16px}
+  button{padding:7px 10px;font-size:12px}
+  .tab{padding:6px 14px;font-size:12px}
 }
 </style>
 </head>
@@ -105,7 +135,7 @@ main{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
   <input id="redNameInput" class="name-input red" placeholder="红方选手" oninput="setPlayerName('red',this.value)">
   <div id="status">准备开始</div>
   <button id="avatarModeBtn" class="avatar-btn" onclick="toggleAvatarMode()">🖼 设置头像</button>
-  <button class="primary" onclick="saveBPHistory()">保存记录</button>
+  <button class="primary" onclick="saveBPHistory()">💾 保存记录</button>
   <button onclick="resetBP()">重置BP</button>
   <button onclick="openAddModal()">+ 添加内容</button>
   <button onclick="exportData()">导出数据</button>
@@ -183,7 +213,7 @@ main{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
 <div id="avatarModal" class="modal">
   <div class="modal-content">
     <h3>设置头像</h3>
-    <div id="avatarItemInfo" style="color:#f0c040;font-size:14px"></div>
+    <div id="avatarItemInfo" style="color:#f0c040;font-size:14px;text-align:center;font-weight:700"></div>
     <div class="hint" style="margin-top:0">
       💡 <b>推荐方式（所有人可见）</b>：把图片命名为 <code>images/{ID}.png</code> 上传到仓库的 images 文件夹，这里会自动加载，不用手动设置。
     </div>
@@ -191,7 +221,7 @@ main{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
       <input type="file" id="avatarFile" accept="image/*" onchange="previewAvatar(event)">
     </label>
     <label>🔗 或输入图片URL / 相对路径
-      <input id="avatarUrl" placeholder="images/n1.png" oninput="previewAvatarUrl(this.value)">
+      <input id="avatarUrl" placeholder="images/n01.png" oninput="previewAvatarUrl(this.value)">
     </label>
     <img id="avatarPreview" class="preview-img" style="display:none">
     <div class="modal-actions">
@@ -202,545 +232,42 @@ main{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
   </div>
 </div>
 
+<!-- ★ 赛果记录弹窗 -->
+<div id="resultModal" class="modal">
+  <div class="modal-content">
+    <h3>⚔️ 记录赛果</h3>
+    <div id="resultMatchInfo" style="text-align:center;color:#f0c040;font-size:13px;font-weight:700;letter-spacing:1px"></div>
+
+    <div class="section-title">谁获胜？</div>
+    <div class="choice-group">
+      <div class="choice-btn" data-winner="blue" onclick="selectWinner('blue')">🔵 蓝方胜</div>
+      <div class="choice-btn" data-winner="red" onclick="selectWinner('red')">🔴 红方胜</div>
+    </div>
+
+    <div class="section-title">获胜方式</div>
+    <div class="choice-group">
+      <div class="choice-btn" data-result="normal" onclick="selectResultType('normal')">胜</div>
+      <div class="choice-btn" data-result="perfect" onclick="selectResultType('perfect')">完胜</div>
+      <div class="choice-btn" data-result="reverse3" onclick="selectResultType('reverse3')">反三</div>
+    </div>
+
+    <div class="hint" style="margin-top:0">
+      💡 完胜：2:0 直落 ｜ 反三：单忍者残血连杀对面三人
+    </div>
+
+    <div class="modal-actions">
+      <button onclick="closeResultModal()">取消</button>
+      <button class="primary" onclick="confirmResult()">保存赛果</button>
+    </div>
+  </div>
+</div>
+
+<script src="data.js"></script>
 <script>
-/* ==================== 默认数据 ==================== */
-const DEFAULT_NINJAS = [
-  // ===== S级 n1 ~ n62 =====
-  {id:"n01",name:"宇智波鼬[秽土转生]",rank:"S"},
-  {id:"n02",name:"佩恩[天道]",rank:"S"},
-  {id:"n03",name:"大蛇丸[传说中的三忍]",rank:"S"},
-  {id:"n04",name:"宇智波鼬[晓·朱]",rank:"S"},
-  {id:"n05",name:"大筒木浦式[异星钓者]",rank:"S"},
-  {id:"n06",name:"漩涡鸣人·自来也[修行之旅]",rank:"S"},
-  {id:"n07",name:"纲手[传说中的三忍]",rank:"S"},
-  {id:"n08",name:"宇智波带土[十尾人柱力]",rank:"S"},
-  {id:"n09",name:"漩涡鸣人·宇智波佐助",rank:"S"},
-  {id:"n10",name:"漩涡鸣人[九喇嘛连结]",rank:"S"},
-  {id:"n11",name:"宇智波斑[五影会谈]",rank:"S"},
-  {id:"n12",name:"波风水门[九喇嘛连结]",rank:"S"},
-  {id:"n13",name:"烈斗[初代目风影]",rank:"S"},
-  {id:"n14",name:"漩涡鸣人[暴怒·第六尾]",rank:"S"},
-  {id:"n15",name:"自来也[传说中的三忍]",rank:"S"},
-  {id:"n16",name:"大筒木舍人[最终章]",rank:"S"},
-  {id:"n17",name:"旗木卡卡西[须佐能乎]",rank:"S"},
-  {id:"n18",name:"宇智波止水[须佐能乎]",rank:"S"},
-  {id:"n19",name:"艾[忍界大战]",rank:"S"},
-  {id:"n20",name:"大筒木桃式",rank:"S"},
-  {id:"n21",name:"宇智波斑[秽土转生·解]",rank:"S"},
-  {id:"n22",name:"千手柱间[木叶创立]",rank:"S"},
-  {id:"n23",name:"宇智波佐助[永恒万花筒]",rank:"S"},
-  {id:"n24",name:"春野樱[忍界大战]",rank:"S"},
-  {id:"n25",name:"大筒木金式",rank:"S"},
-  {id:"n26",name:"三代目风影[秽土转生]",rank:"S"},
-  {id:"n27",name:"大野木[忍界大战]",rank:"S"},
-  {id:"n28",name:"迈特凯[死门]",rank:"S"},
-  {id:"n29",name:"宇智波斑[木叶创立]",rank:"S"},
-  {id:"n30",name:"宇智波带土[忍界大战]",rank:"S"},
-  {id:"n31",name:"千手柱间[秽土转生]",rank:"S"},
-  {id:"n32",name:"罗砂[四代目风影]",rank:"S"},
-  {id:"n33",name:"自来也[舞之豪杰]",rank:"S"},
-  {id:"n34",name:"佩恩·天道[超]",rank:"S"},
-  {id:"n35",name:"药师兜[仙人模式]",rank:"S"},
-  {id:"n36",name:"宇智波斑[秽土转生]",rank:"S"},
-  {id:"n37",name:"艾[三代目雷影]",rank:"S"},
-  {id:"n38",name:"宇智波斑[白面具]",rank:"S"},
-  {id:"n39",name:"半藏[秽土转生]",rank:"S"},
-  {id:"n40",name:"千手扉间[秽土转生]",rank:"S"},
-  {id:"n41",name:"纲手[百豪]",rank:"S"},
-  {id:"n42",name:"无[二代目土影]",rank:"S"},
-  {id:"n43",name:"波风水门[秽土转生]",rank:"S"},
-  {id:"n44",name:"金角·银角[秽土转生]",rank:"S"},
-  {id:"n45",name:"猿飞日斩[秽土转生]",rank:"S"},
-  {id:"n46",name:"长门[秽土转生]",rank:"S"},
-  {id:"n47",name:"鬼灯幻月[二代目水影]",rank:"S"},
-  {id:"n48",name:"大野木[三代目土影]",rank:"S"},
-  {id:"n49",name:"宇智波斑",rank:"S"},
-  {id:"n50",name:"千手柱间",rank:"S"},
-  {id:"n51",name:"艾[四代目雷影]",rank:"S"},
-  {id:"n52",name:"千手扉间",rank:"S"},
-  {id:"n53",name:"自来也[仙人模式]",rank:"S"},
-  {id:"n54",name:"神秘面具男",rank:"S"},
-  {id:"n55",name:"宇智波鼬[须佐能乎]",rank:"S"},
-  {id:"n56",name:"猿飞日斩",rank:"S"},
-  {id:"n57",name:"波风水门",rank:"S"},
-  {id:"n58",name:"大蛇丸",rank:"S"},
-  {id:"n59",name:"自来也",rank:"S"},
-  {id:"n60",name:"纲手",rank:"S"},
-  {id:"n61",name:"宇智波斑[神驹佑将]",rank:"S"},
-  {id:"n62",name:"神秘面具男[红夜之刃]",rank:"S"},
-
-  // ===== A级 n63 ~ n184 =====
-  {id:"n63",name:"宇智波泉奈",rank:"A"},
-  {id:"n64",name:"宇智波佐助[须佐能乎]",rank:"A"},
-  {id:"n65",name:"干柿鬼鲛",rank:"A"},
-  {id:"n66",name:"宇智波佐助[篮球之星]",rank:"A"},
-  {id:"n67",name:"小南[漂泊浪客]",rank:"A"},
-  {id:"n68",name:"宇智波带土[漂泊浪客]",rank:"A"},
-  {id:"n69",name:"角都[晓·北]",rank:"A"},
-  {id:"n70",name:"不立土",rank:"A"},
-  {id:"n71",name:"飞段[晓·三]",rank:"A"},
-  {id:"n72",name:"宇智波佐助[兄弟之战]",rank:"A"},
-  {id:"n73",name:"千手柱间[侠隐江湖]",rank:"A"},
-  {id:"n74",name:"波风水门[侠隐江湖]",rank:"A"},
-  {id:"n75",name:"春野樱[沙滩排球]",rank:"A"},
-  {id:"n76",name:"勘九郎[指导上忍]",rank:"A"},
-  {id:"n77",name:"迪达拉[晓创生]",rank:"A"},
-  {id:"n78",name:"志村团藏[漂泊寻者]",rank:"A"},
-  {id:"n79",name:"干柿鬼鲛[青年]",rank:"A"},
-  {id:"n80",name:"旗木卡卡西[神威对决]",rank:"A"},
-  {id:"n81",name:"猿飞阿斯玛[神驹佑将]",rank:"A"},
-  {id:"n82",name:"小南[神驹佑将]",rank:"A"},
-  {id:"n83",name:"纲手[妖怪奇谭]",rank:"A"},
-  {id:"n84",name:"迈特凯[青春爆炸]",rank:"A"},
-  {id:"n85",name:"巳月[仙人模式]",rank:"A"},
-  {id:"n86",name:"机械鸣人[初始形态]",rank:"A"},
-  {id:"n87",name:"宇智波佐助[侠隐江湖]",rank:"A"},
-  {id:"n88",name:"大野木[侠隐江湖]",rank:"A"},
-  {id:"n89",name:"圈圈脸[大和]",rank:"A"},
-  {id:"n90",name:"桃地再不斩[秽土转生]",rank:"A"},
-  {id:"n91",name:"土台[忍界大战]",rank:"A"},
-  {id:"n92",name:"黑土[夏日限定]",rank:"A"},
-  {id:"n93",name:"神农[羁绊]",rank:"A"},
-  {id:"n94",name:"蝎[绯流琥]",rank:"A"},
-  {id:"n95",name:"不动",rank:"A"},
-  {id:"n96",name:"大蛇丸[新春限定]",rank:"A"},
-  {id:"n97",name:"黑绝",rank:"A"},
-  {id:"n98",name:"李洛克[忍界大战]",rank:"A"},
-  {id:"n99",name:"旗木卡卡西[幻之真容]",rank:"A"},
-  {id:"n100",name:"药师兜[侠隐江湖]",rank:"A"},
-  {id:"n101",name:"宇智波鼬[夏日限定]",rank:"A"},
-  {id:"n102",name:"日向雏田[最终章]",rank:"A"},
-  {id:"n103",name:"漩涡博人[桃式显现]",rank:"A"},
-  {id:"n104",name:"日向宁次[忍界大战]",rank:"A"},
-  {id:"n105",name:"角都[秽土转生]",rank:"A"},
-  {id:"n106",name:"不缘",rank:"A"},
-  {id:"n107",name:"我爱罗[新春限定]",rank:"A"},
-  {id:"n108",name:"卑留呼[火之意志继承者]",rank:"A"},
-  {id:"n109",name:"纲手[侠隐江湖]",rank:"A"},
-  {id:"n110",name:"长十郎[六代目水影]",rank:"A"},
-  {id:"n111",name:"长门[青年]",rank:"A"},
-  {id:"n112",name:"飞段[晓创生]",rank:"A"},
-  {id:"n113",name:"三船[青年]",rank:"A"},
-  {id:"n114",name:"佩恩·六道[漂泊浪客]",rank:"A"},
-  {id:"n115",name:"艾[青年]",rank:"A"},
-  {id:"n116",name:"迪达拉[新春限定]",rank:"A"},
-  {id:"n117",name:"照美冥[侠隐江湖]",rank:"A"},
-  {id:"n118",name:"达鲁伊[五代目雷影]",rank:"A"},
-  {id:"n119",name:"不风",rank:"A"},
-  {id:"n120",name:"神秘面具男[忍者之路]",rank:"A"},
-  {id:"n121",name:"波风水门[青年]",rank:"A"},
-  {id:"n122",name:"猿飞日斩[三忍之师]",rank:"A"},
-  {id:"n123",name:"旗木卡卡西[元气夏日]",rank:"A"},
-  {id:"n124",name:"奇拉比[忍界大战]",rank:"A"},
-  {id:"n125",name:"千手扉间[漂泊武士]",rank:"A"},
-  {id:"n126",name:"天天[忍界大战]",rank:"A"},
-  {id:"n127",name:"宇智波止水[新春限定]",rank:"A"},
-  {id:"n128",name:"飞段[恶灵之影]",rank:"A"},
-  {id:"n129",name:"黑土[四代目土影]",rank:"A"},
-  {id:"n130",name:"加藤断",rank:"A"},
-  {id:"n131",name:"猿飞阿斯玛[七夕限定]",rank:"A"},
-  {id:"n132",name:"迪达拉[秽土转生]",rank:"A"},
-  {id:"n133",name:"桃地再不斩[漂泊武士]",rank:"A"},
-  {id:"n134",name:"迈特凯[忍界大战]",rank:"A"},
-  {id:"n135",name:"蝎[晓创生]",rank:"A"},
-  {id:"n136",name:"小南[新春限定]",rank:"A"},
-  {id:"n137",name:"宇智波带土[暴怒]",rank:"A"},
-  {id:"n138",name:"旗木卡卡西[忍界大战]",rank:"A"},
-  {id:"n139",name:"猿飞木叶丸",rank:"A"},
-  {id:"n140",name:"漩涡鸣人[九尾查克拉]",rank:"A"},
-  {id:"n141",name:"照美冥[夏日泳装]",rank:"A"},
-  {id:"n142",name:"角都[晓创生]",rank:"A"},
-  {id:"n143",name:"黄土[忍界大战]",rank:"A"},
-  {id:"n144",name:"千代[近松十人卫]",rank:"A"},
-  {id:"n145",name:"药师兜[半蛇斗篷]",rank:"A"},
-  {id:"n146",name:"干柿鬼鲛[鲛肌融合]",rank:"A"},
-  {id:"n147",name:"宇智波鼬[新春限定]",rank:"A"},
-  {id:"n148",name:"地陆",rank:"A"},
-  {id:"n149",name:"我爱罗[忍界大战]",rank:"A"},
-  {id:"n150",name:"宇智波佐助[疾风传咒印]",rank:"A"},
-  {id:"n151",name:"秋道丁次[忍界大战]",rank:"A"},
-  {id:"n152",name:"小南[夏日泳装]",rank:"A"},
-  {id:"n153",name:"大蛇丸[晓]",rank:"A"},
-  {id:"n154",name:"猿飞阿斯玛[秽土转生]",rank:"A"},
-  {id:"n155",name:"春野樱[百豪]",rank:"A"},
-  {id:"n156",name:"波风水门[新春限定]",rank:"A"},
-  {id:"n157",name:"照美冥[五代目水影]",rank:"A"},
-  {id:"n158",name:"三船",rank:"A"},
-  {id:"n159",name:"猿飞日斩[火影继承人]",rank:"A"},
-  {id:"n160",name:"勘九郎[忍界大战]",rank:"A"},
-  {id:"n161",name:"宇智波佐助[万花筒写轮眼]",rank:"A"},
-  {id:"n162",name:"志村团藏",rank:"A"},
-  {id:"n163",name:"达鲁伊",rank:"A"},
-  {id:"n164",name:"迈特凯[惊门]",rank:"A"},
-  {id:"n165",name:"奇拉比",rank:"A"},
-  {id:"n166",name:"漩涡鸣人[仙人模式]",rank:"A"},
-  {id:"n167",name:"绝",rank:"A"},
-  {id:"n168",name:"角都[地怨虞]",rank:"A"},
-  {id:"n169",name:"旗木卡卡西[万花筒写轮眼]",rank:"A"},
-  {id:"n170",name:"蝎[百机操演]",rank:"A"},
-  {id:"n171",name:"宇智波止水",rank:"A"},
-  {id:"n172",name:"飞段[死司凭血]",rank:"A"},
-  {id:"n173",name:"角都",rank:"A"},
-  {id:"n174",name:"飞段",rank:"A"},
-  {id:"n175",name:"小南",rank:"A"},
-  {id:"n176",name:"阿飞",rank:"A"},
-  {id:"n177",name:"我爱罗[疾风传]",rank:"A"},
-  {id:"n178",name:"迪达拉",rank:"A"},
-  {id:"n179",name:"蝎",rank:"A"},
-  {id:"n180",name:"宇智波鼬",rank:"A"},
-  {id:"n181",name:"桃地再不斩",rank:"A"},
-  {id:"n182",name:"猿飞阿斯玛",rank:"A"},
-  {id:"n183",name:"旗木卡卡西",rank:"A"},
-  {id:"n184",name:"迈特凯",rank:"A"},
-
-  // ===== B级 n185 ~ n372 =====
-  {id:"n185",name:"重吾",rank:"B"},
-  {id:"n186",name:"旗木卡卡西[少年]",rank:"B"},
-  {id:"n187",name:"白[中秋限定]",rank:"B"},
-  {id:"n188",name:"日向雏田[八极宗师]",rank:"B"},
-  {id:"n189",name:"枫[夏日限定]",rank:"B"},
-  {id:"n190",name:"矢仓[奇拉比落风传]",rank:"B"},
-  {id:"n191",name:"夕日红[少女]",rank:"B"},
-  {id:"n192",name:"油女取根[漂泊寻者]",rank:"B"},
-  {id:"n193",name:"雨乃",rank:"B"},
-  {id:"n194",name:"天天[神驹佑将]",rank:"B"},
-  {id:"n195",name:"二位由木人[奇拉比落风传]",rank:"B"},
-  {id:"n196",name:"静音[冬日睡衣]",rank:"B"},
-  {id:"n197",name:"重吾[忍界大战]",rank:"B"},
-  {id:"n198",name:"佩恩[畜生道]",rank:"B"},
-  {id:"n199",name:"佩恩[地狱道]",rank:"B"},
-  {id:"n200",name:"卯月夕颜[忍界大战]",rank:"B"},
-  {id:"n201",name:"日向花火[武当宗师]",rank:"B"},
-  {id:"n202",name:"香燐[夏日限定]",rank:"B"},
-  {id:"n203",name:"野原琳[漂泊浪客]",rank:"B"},
-  {id:"n204",name:"雨琉[羁绊]",rank:"B"},
-  {id:"n205",name:"油女龙马",rank:"B"},
-  {id:"n206",name:"药师兜[新春限定]",rank:"B"},
-  {id:"n207",name:"佐井[最终章]",rank:"B"},
-  {id:"n208",name:"阿三",rank:"B"},
-  {id:"n209",name:"月光疾风[秽土转生]",rank:"B"},
-  {id:"n210",name:"御手洗红豆[新春限定]",rank:"B"},
-  {id:"n211",name:"夕日红[冬日限定]",rank:"B"},
-  {id:"n212",name:"马基",rank:"B"},
-  {id:"n213",name:"佩恩[饿鬼道]",rank:"B"},
-  {id:"n214",name:"犬塚花",rank:"B"},
-  {id:"n215",name:"佩恩[人间道]",rank:"B"},
-  {id:"n216",name:"白[秽土转生]",rank:"B"},
-  {id:"n217",name:"天天[峨眉宗师]",rank:"B"},
-  {id:"n218",name:"奈良鹿丸[最终章]",rank:"B"},
-  {id:"n219",name:"枫[新佩恩六道]",rank:"B"},
-  {id:"n220",name:"壹·叁[火之意志继承者]",rank:"B"},
-  {id:"n221",name:"君麻吕[漂泊浪客]",rank:"B"},
-  {id:"n222",name:"鬼灯满月[忍刀七人众]",rank:"B"},
-  {id:"n223",name:"日向花火[冬日限定]",rank:"B"},
-  {id:"n224",name:"萨姆伊[新春限定]",rank:"B"},
-  {id:"n225",name:"大和[新春限定]",rank:"B"},
-  {id:"n226",name:"贰[火之意志继承者]",rank:"B"},
-  {id:"n227",name:"漩涡鸣人[中秋限定]",rank:"B"},
-  {id:"n228",name:"宇智波鼬[红夜之刃]",rank:"B"},
-  {id:"n229",name:"山中风",rank:"B"},
-  {id:"n230",name:"羽高[新佩恩六道]",rank:"B"},
-  {id:"n231",name:"帕库拉[元气夏日]",rank:"B"},
-  {id:"n232",name:"李洛克[截拳宗师]",rank:"B"},
-  {id:"n233",name:"宇智波佐助[忍者之路]",rank:"B"},
-  {id:"n234",name:"汉[新佩恩六道]",rank:"B"},
-  {id:"n235",name:"紫阳花",rank:"B"},
-  {id:"n236",name:"御手洗红豆[冬日限定]",rank:"B"},
-  {id:"n237",name:"黑土[新春限定]",rank:"B"},
-  {id:"n238",name:"赤土[新春限定]",rank:"B"},
-  {id:"n239",name:"奈良鹿丸[忍界大战]",rank:"B"},
-  {id:"n240",name:"老紫[新佩恩六道]",rank:"B"},
-  {id:"n241",name:"海野伊鲁卡[西装]",rank:"B"},
-  {id:"n242",name:"香燐[忍界大战]",rank:"B"},
-  {id:"n243",name:"日向雏田[忍者之路]",rank:"B"},
-  {id:"n244",name:"矢仓[新佩恩六道]",rank:"B"},
-  {id:"n245",name:"静音[元气夏日]",rank:"B"},
-  {id:"n246",name:"日向宁次[咏春宗师]",rank:"B"},
-  {id:"n247",name:"摩托伊",rank:"B"},
-  {id:"n248",name:"春野樱[忍者少女]",rank:"B"},
-  {id:"n249",name:"伊势乌冬[木叶上忍]",rank:"B"},
-  {id:"n250",name:"漩涡玖辛奈[冬日限定]",rank:"B"},
-  {id:"n251",name:"秋道丁次[新春限定]",rank:"B"},
-  {id:"n252",name:"佐井[新春限定]",rank:"B"},
-  {id:"n253",name:"二位由木人[新佩恩六道]",rank:"B"},
-  {id:"n254",name:"赤土",rank:"B"},
-  {id:"n255",name:"猿飞未来",rank:"B"},
-  {id:"n256",name:"西瓜山河豚鬼[忍刀七人众]",rank:"B"},
-  {id:"n257",name:"日向雏田[忍者少女]",rank:"B"},
-  {id:"n258",name:"野原琳[元气少女]",rank:"B"},
-  {id:"n259",name:"夕日红[七夕限定]",rank:"B"},
-  {id:"n260",name:"李洛克[木叶飞人]",rank:"B"},
-  {id:"n261",name:"大和[木叶工匠]",rank:"B"},
-  {id:"n262",name:"风祭萌黄[木叶上忍]",rank:"B"},
-  {id:"n263",name:"油女取根",rank:"B"},
-  {id:"n264",name:"奈良鹿丸[新春限定]",rank:"B"},
-  {id:"n265",name:"日向宁次[新春限定]",rank:"B"},
-  {id:"n266",name:"狩[秽土转生]",rank:"B"},
-  {id:"n267",name:"佐井[中秋限定]",rank:"B"},
-  {id:"n268",name:"天天[忍者少女]",rank:"B"},
-  {id:"n269",name:"春野樱[冬日限定]",rank:"B"},
-  {id:"n270",name:"枫[七尾人柱力]",rank:"B"},
-  {id:"n271",name:"白[漂泊武士]",rank:"B"},
-  {id:"n272",name:"山中井野[忍者少女]",rank:"B"},
-  {id:"n273",name:"月光疾风[七夕限定]",rank:"B"},
-  {id:"n274",name:"卯月夕颜[七夕限定]",rank:"B"},
-  {id:"n275",name:"林檎雨由利[忍刀七人众]",rank:"B"},
-  {id:"n276",name:"香燐[鹰]",rank:"B"},
-  {id:"n277",name:"犬塚牙[忍界大战]",rank:"B"},
-  {id:"n278",name:"油女志乃[新春限定]",rank:"B"},
-  {id:"n279",name:"日向雏田[新春限定]",rank:"B"},
-  {id:"n280",name:"日向花火[和服]",rank:"B"},
-  {id:"n281",name:"萨姆伊[忍界大战]",rank:"B"},
-  {id:"n282",name:"黑土[冬日限定]",rank:"B"},
-  {id:"n283",name:"羽高[六尾人柱力]",rank:"B"},
-  {id:"n284",name:"手鞠[忍界大战]",rank:"B"},
-  {id:"n285",name:"李洛克[夏日泳装]",rank:"B"},
-  {id:"n286",name:"天天[中华面点师]",rank:"B"},
-  {id:"n287",name:"重吾[鹰]",rank:"B"},
-  {id:"n288",name:"野原琳[特别护理]",rank:"B"},
-  {id:"n289",name:"无梨甚八[忍刀七人众]",rank:"B"},
-  {id:"n290",name:"山中井野[忍界大战]",rank:"B"},
-  {id:"n291",name:"油女志乃[忍界大战]",rank:"B"},
-  {id:"n292",name:"静音[新春限定]",rank:"B"},
-  {id:"n293",name:"漩涡玖辛奈[新春限定]",rank:"B"},
-  {id:"n294",name:"长十郎",rank:"B"},
-  {id:"n295",name:"汉[五尾人柱力]",rank:"B"},
-  {id:"n296",name:"栗霰串丸[忍刀七人众]",rank:"B"},
-  {id:"n297",name:"香燐[冬日限定]",rank:"B"},
-  {id:"n298",name:"帕库拉",rank:"B"},
-  {id:"n299",name:"日向宁次[中秋限定]",rank:"B"},
-  {id:"n300",name:"纲手[夏日泳装]",rank:"B"},
-  {id:"n301",name:"君麻吕[恶灵之影]",rank:"B"},
-  {id:"n302",name:"佐井[忍界大战]",rank:"B"},
-  {id:"n303",name:"黑土",rank:"B"},
-  {id:"n304",name:"鬼灯水月[鹰]",rank:"B"},
-  {id:"n305",name:"萨姆伊[夏日泳装]",rank:"B"},
-  {id:"n306",name:"我爱罗[凭依体]",rank:"B"},
-  {id:"n307",name:"森乃伊比喜",rank:"B"},
-  {id:"n308",name:"佩恩[修罗道]",rank:"B"},
-  {id:"n309",name:"奥摩伊",rank:"B"},
-  {id:"n310",name:"红莲",rank:"B"},
-  {id:"n311",name:"老紫[四尾人柱力]",rank:"B"},
-  {id:"n312",name:"漩涡鸣人[第四尾]",rank:"B"},
-  {id:"n313",name:"佩恩[畜生道]",rank:"B"},
-  {id:"n314",name:"旗木卡卡西[新春限定]",rank:"B"},
-  {id:"n315",name:"犬塚牙[新春限定]",rank:"B"},
-  {id:"n316",name:"山中井野[新春限定]",rank:"B"},
-  {id:"n317",name:"通草野饵人[忍刀七人众]",rank:"B"},
-  {id:"n318",name:"夕日红[和服]",rank:"B"},
-  {id:"n319",name:"天天[冬日限定]",rank:"B"},
-  {id:"n320",name:"矢仓[三尾人柱力]",rank:"B"},
-  {id:"n321",name:"惠比寿",rank:"B"},
-  {id:"n322",name:"李洛克[醉拳]",rank:"B"},
-  {id:"n323",name:"大蛇丸[木叶三忍]",rank:"B"},
-  {id:"n324",name:"御手洗红豆[夏日泳装]",rank:"B"},
-  {id:"n325",name:"药师兜[恶灵之影]",rank:"B"},
-  {id:"n326",name:"卯月夕颜",rank:"B"},
-  {id:"n327",name:"野原琳",rank:"B"},
-  {id:"n328",name:"纲手[木叶三忍]",rank:"B"},
-  {id:"n329",name:"日向雏田[元气夏日]",rank:"B"},
-  {id:"n330",name:"二位由木人[二尾人柱力]",rank:"B"},
-  {id:"n331",name:"木叶丸[疾风传]",rank:"B"},
-  {id:"n332",name:"自来也[木叶三忍]",rank:"B"},
-  {id:"n333",name:"千代",rank:"B"},
-  {id:"n334",name:"犬塚牙[疾风传]",rank:"B"},
-  {id:"n335",name:"漩涡鸣人[新春限定]",rank:"B"},
-  {id:"n336",name:"春野樱[新春限定]",rank:"B"},
-  {id:"n337",name:"大和[暗部]",rank:"B"},
-  {id:"n338",name:"鬼灯水月",rank:"B"},
-  {id:"n339",name:"手鞠[疾风传]",rank:"B"},
-  {id:"n340",name:"日向雏田[冬日限定]",rank:"B"},
-  {id:"n341",name:"宇智波佐助[新春限定]",rank:"B"},
-  {id:"n342",name:"香燐",rank:"B"},
-  {id:"n343",name:"天天[疾风传]",rank:"B"},
-  {id:"n344",name:"秋道丁次[疾风传]",rank:"B"},
-  {id:"n345",name:"油女志乃[疾风传]",rank:"B"},
-  {id:"n346",name:"日向雏田[疾风传]",rank:"B"},
-  {id:"n347",name:"宇智波鼬[暗部]",rank:"B"},
-  {id:"n348",name:"山中井野[夏日泳装]",rank:"B"},
-  {id:"n349",name:"日向宁次[疾风传]",rank:"B"},
-  {id:"n350",name:"李洛克[疾风传]",rank:"B"},
-  {id:"n351",name:"旗木卡卡西[暗部]",rank:"B"},
-  {id:"n352",name:"春野樱[夏日泳装]",rank:"B"},
-  {id:"n353",name:"宇智波佐助[疾风传]",rank:"B"},
-  {id:"n354",name:"春野樱[疾风传]",rank:"B"},
-  {id:"n355",name:"大和",rank:"B"},
-  {id:"n356",name:"奈良鹿丸[疾风传]",rank:"B"},
-  {id:"n357",name:"勘九郎[疾风传]",rank:"B"},
-  {id:"n358",name:"山中井野[疾风传]",rank:"B"},
-  {id:"n359",name:"漩涡鸣人[疾风传]",rank:"B"},
-  {id:"n360",name:"佐井",rank:"B"},
-  {id:"n361",name:"漩涡玖辛奈",rank:"B"},
-  {id:"n362",name:"李洛克[杜门]",rank:"B"},
-  {id:"n363",name:"君麻吕",rank:"B"},
-  {id:"n364",name:"药师兜",rank:"B"},
-  {id:"n365",name:"宇智波带土[少年]",rank:"B"},
-  {id:"n366",name:"御手洗红豆",rank:"B"},
-  {id:"n367",name:"夕日红",rank:"B"},
-  {id:"n368",name:"漩涡鸣人[第一尾]",rank:"B"},
-  {id:"n369",name:"宇智波佐助[咒印]",rank:"B"},
-  {id:"n370",name:"君麻吕[咒印]",rank:"B"},
-  {id:"n371",name:"白",rank:"B"},
-  {id:"n372",name:"我爱罗",rank:"B"},
-
-  // ===== C级 n373 ~ n455 =====
-  {id:"n373",name:"阿茨伊",rank:"C"},
-  {id:"n374",name:"药师兜[少年]",rank:"C"},
-  {id:"n375",name:"惠比寿[少年]",rank:"C"},
-  {id:"n376",name:"奈良鹿台",rank:"C"},
-  {id:"n377",name:"秋道丁次[赛事限定]",rank:"C"},
-  {id:"n378",name:"荒谷",rank:"C"},
-  {id:"n379",name:"新希",rank:"C"},
-  {id:"n380",name:"宇智波斑[少年]",rank:"C"},
-  {id:"n381",name:"药师野乃宇",rank:"C"},
-  {id:"n382",name:"山中井野[赛事限定]",rank:"C"},
-  {id:"n383",name:"笕堇",rank:"C"},
-  {id:"n384",name:"春野樱[赛事限定]",rank:"C"},
-  {id:"n385",name:"千手扉间[少年]",rank:"C"},
-  {id:"n386",name:"尤鲁伊",rank:"C"},
-  {id:"n387",name:"千手柱间[少年]",rank:"C"},
-  {id:"n388",name:"梅塔尔·李",rank:"C"},
-  {id:"n389",name:"秋道蝶蝶",rank:"C"},
-  {id:"n390",name:"迈特戴",rank:"C"},
-  {id:"n391",name:"宇智波佐助[赛事限定]",rank:"C"},
-  {id:"n392",name:"弥彦[少年]",rank:"C"},
-  {id:"n393",name:"丸星古介",rank:"C"},
-  {id:"n394",name:"山中井阵",rank:"C"},
-  {id:"n395",name:"纲手[少女]",rank:"C"},
-  {id:"n396",name:"漩涡鸣人[赛事限定]",rank:"C"},
-  {id:"n397",name:"伊豆野山葵",rank:"C"},
-  {id:"n398",name:"多由也[秽土转生]",rank:"C"},
-  {id:"n399",name:"大蛇丸[少年]",rank:"C"},
-  {id:"n400",name:"长门[少年]",rank:"C"},
-  {id:"n401",name:"结乃岩部",rank:"C"},
-  {id:"n402",name:"并足雷同",rank:"C"},
-  {id:"n403",name:"宇智波佐良娜",rank:"C"},
-  {id:"n404",name:"左近右近[秽土转生]",rank:"C"},
-  {id:"n405",name:"巳月",rank:"C"},
-  {id:"n406",name:"静香",rank:"C"},
-  {id:"n407",name:"奇拉比[少年]",rank:"C"},
-  {id:"n408",name:"漩涡博人",rank:"C"},
-  {id:"n409",name:"山城青叶",rank:"C"},
-  {id:"n410",name:"漩涡玖辛奈[少女]",rank:"C"},
-  {id:"n411",name:"鬼童丸[秽土转生]",rank:"C"},
-  {id:"n412",name:"麻布伊",rank:"C"},
-  {id:"n413",name:"宇智波止水[忍者新秀]",rank:"C"},
-  {id:"n414",name:"次郎坊[秽土转生]",rank:"C"},
-  {id:"n415",name:"自来也[少年]",rank:"C"},
-  {id:"n416",name:"青",rank:"C"},
-  {id:"n417",name:"不知火玄间",rank:"C"},
-  {id:"n418",name:"宇智波鼬[忍者新秀]",rank:"C"},
-  {id:"n419",name:"神月出云",rank:"C"},
-  {id:"n420",name:"希",rank:"C"},
-  {id:"n421",name:"小南[青蛙小队]",rank:"C"},
-  {id:"n422",name:"卡鲁伊",rank:"C"},
-  {id:"n423",name:"水木[咒印]",rank:"C"},
-  {id:"n424",name:"托斯砧",rank:"C"},
-  {id:"n425",name:"金槌",rank:"C"},
-  {id:"n426",name:"萨克镫",rank:"C"},
-  {id:"n427",name:"钢子铁",rank:"C"},
-  {id:"n428",name:"春野樱[忍者新秀]",rank:"C"},
-  {id:"n429",name:"漩涡鸣人[忍者学员]",rank:"C"},
-  {id:"n430",name:"月光疾风",rank:"C"},
-  {id:"n431",name:"日向花火",rank:"C"},
-  {id:"n432",name:"手鞠[镰多利]",rank:"C"},
-  {id:"n433",name:"多由也",rank:"C"},
-  {id:"n434",name:"左近右近",rank:"C"},
-  {id:"n435",name:"鬼童丸",rank:"C"},
-  {id:"n436",name:"次郎坊",rank:"C"},
-  {id:"n437",name:"海野伊鲁卡",rank:"C"},
-  {id:"n438",name:"天天[新春风旗袍]",rank:"C"},
-  {id:"n439",name:"宇智波佐助[写轮眼]",rank:"C"},
-  {id:"n440",name:"秋道丁次",rank:"C"},
-  {id:"n441",name:"勘九郎",rank:"C"},
-  {id:"n442",name:"木叶丸军团",rank:"C"},
-  {id:"n443",name:"静音",rank:"C"},
-  {id:"n444",name:"天天",rank:"C"},
-  {id:"n445",name:"油女志乃",rank:"C"},
-  {id:"n446",name:"手鞠",rank:"C"},
-  {id:"n447",name:"日向雏田",rank:"C"},
-  {id:"n448",name:"奈良鹿丸",rank:"C"},
-  {id:"n449",name:"日向宁次",rank:"C"},
-  {id:"n450",name:"犬塚牙",rank:"C"},
-  {id:"n451",name:"春野樱",rank:"C"},
-  {id:"n452",name:"宇智波佐助",rank:"C"},
-  {id:"n453",name:"山中井野",rank:"C"},
-  {id:"n454",name:"李洛克",rank:"C"},
-  {id:"n455",name:"漩涡鸣人",rank:"C"}
-];
-
-const DEFAULT_SCROLLS = [
-  {id:'s1',name:'土遁·土流枪',type:'土遁'},
-  {id:'s2',name:'土遁·岩落',type:'土遁'},
-  {id:'s3',name:'土遁·地动',type:'土遁'},
-  {id:'s4',name:'土遁·土柱爆',type:'土遁'},
-  {id:'s5',name:'水遁·水乱波',type:'水遁'},
-  {id:'s6',name:'水遁·水牙弹',type:'水遁'},
-  {id:'s7',name:'水遁·水贻拿原',type:'水遁'},
-  {id:'s8',name:'水遁·水冲波',type:'水遁'},
-  {id:'s9',name:'水遁·水龙卷',type:'水遁'},
-  {id:'s10',name:'火遁·鬼灯笼',type:'火遁'},
-  {id:'s11',name:'火遁·豪炎矢',type:'火遁'},
-  {id:'s12',name:'火遁·鼠毛玉',type:'火遁'},
-  {id:'s13',name:'火遁·裂炎弹',type:'火遁'},
-  {id:'s14',name:'火遁·凤仙火之术',type:'火遁'},
-  {id:'s15',name:'雷遁·雷电击',type:'雷遁'},
-  {id:'s16',name:'雷遁·地走',type:'雷遁'},
-  {id:'s17',name:'风遁·斩空破',type:'风遁'},
-  {id:'s18',name:'风遁·真空波',type:'风遁'},
-  {id:'s19',name:'风遁·真空玉',type:'风遁'},
-  {id:'s20',name:'风遁·风杀阵',type:'风遁'},
-  {id:'s21',name:'风遁·压害',type:'风遁'},
-  {id:'s22',name:'冰遁·冻雪',type:'冰遁'},
-  {id:'s23',name:'冰遁·燕吹雪',type:'冰遁'},
-  {id:'s24',name:'幻术·此处非之术',type:'幻术'},
-  {id:'s25',name:'幻术·黑暗行之术',type:'幻术'},
-  {id:'s26',name:'掌仙术·活',type:'掌仙术'},
-  {id:'s27',name:'禁术·阴愈伤灭（霸体）',type:'禁术'},
-  {id:'s28',name:'秘术·散',type:'秘术'},
-  {id:'s29',name:'封印术·五行封印',type:'封印术'},
-  {id:'s30',name:'封印术·除魔',type:'封印术'},
-  {id:'s31',name:'封印术·四肢重封印',type:'封印术'},
-  {id:'s32',name:'通灵·手里剑护身',type:'通灵'},
-  {id:'s33',name:'通灵·来去手里剑',type:'通灵'},
-  {id:'s34',name:'通灵·雷光剑化',type:'通灵'},
-  {id:'s35',name:'木遁·一字连柱',type:'木遁'},
-  {id:'s36',name:'木遁·水盾',type:'木遁'},
-  {id:'s37',name:'木遁·扦插之术',type:'木遁'},
-  {id:'s38',name:'时空间忍术',type:'忍术'},
-  {id:'s39',name:'影分身之术',type:'忍术'},
-  {id:'s40',name:'手里剑影分身',type:'忍术'},
-  {id:'s41',name:'毅力',type:'忍法帖'},
-  {id:'s42',name:'一叶障',type:'忍法帖'},
-  {id:'s43',name:'查克拉手术刀',type:'医疗'}
-];
-
-const DEFAULT_SUMMONS = [
-  {id:'t1',name:'忍犬',skill:'忍犬大军'},
-  {id:'t2',name:'蛤蟆吉',skill:'蛤蟆水铁炮'},
-  {id:'t3',name:'蓝蛇',skill:'蓝色毒沼'},
-  {id:'t4',name:'忍龟',skill:'忍龟土流壁'},
-  {id:'t5',name:'镰鼬',skill:'镰鼬转转舞'},
-  {id:'t6',name:'猿魔',skill:'猿魔乱舞'},
-  {id:'t7',name:'蛤蟆仙人',skill:'幻术蛤蟆临唱'},
-  {id:'t8',name:'山椒鱼',skill:'山椒鱼剧毒'},
-  {id:'t9',name:'蜃楼',skill:'蜃楼大水瀑'},
-  {id:'t10',name:'蛞蝓',skill:'蛞蝓治愈术'},
-  {id:'t11',name:'乌鸦',skill:'乌鸦袭杀'},
-  {id:'t12',name:'梦貘',skill:'梦貘吞噬'},
-  {id:'t13',name:'鲨鱼',skill:'鲨鱼撕咬'},
-  {id:'t14',name:'熊猫',skill:'4秒霸体'},
-  {id:'t15',name:'二尾',skill:'火鼠玉'},
-  {id:'t16',name:'螃蟹',skill:'减速50%'},
-  {id:'t17',name:'变色龙',skill:'隐身'},
-  {id:'t18',name:'万蛇',skill:'全屏反手'},
-  {id:'t19',name:'大象',skill:'大象冲撞'},
-  {id:'t20',name:'守鹤',skill:'风遁砂漠'},
-  {id:'t21',name:'老鹰',skill:'高空俯冲'},
-  {id:'t22',name:'蜈蚣',skill:'毒液喷射'},
-  {id:'t23',name:'蛤蟆龙',skill:'水铁炮连发'},
-  {id:'t24',name:'蛤蟆力',skill:'蛤蟆油弹'}
-];
+/* ==================== 默认数据（已拆分到 data.js） ==================== */
+const DEFAULT_NINJAS = window.BP_DATA.ninjas;
+const DEFAULT_SCROLLS = window.BP_DATA.scrolls;
+const DEFAULT_SUMMONS = window.BP_DATA.summons;
 
 /* ==================== BP 流程 ==================== */
 const steps = [
@@ -782,6 +309,11 @@ let avatarMap = {};
 let avatarMode = false;
 let currentAvatarItem = null;
 
+/* 赛果相关 */
+let pendingResult = {winner: 'blue', resultType: 'normal'};
+let pendingRecord = null;
+let editingId = null;
+
 /* ==================== 工具函数 ==================== */
 function makeAvatar(name, type){
   const safeName = String(name).replace(/[「」\[\]·\s]/g,'');
@@ -807,18 +339,13 @@ function getName(id, type){
   return item ? item.name : id;
 }
 
-/* ★★★ 方案A核心：自动按 ID 找 images/{id}.png ★★★ */
 function getAvatarUrl(item, type){
-  // 1. 本地自定义头像（你自己单独调的，最高优先）
   if(avatarMap[item.id] && String(avatarMap[item.id]).trim() !== ''){
     return avatarMap[item.id];
   }
-  // 2. 数据自带 img 字段
   if(item.img && String(item.img).trim() !== ''){
     return item.img;
   }
-  // 3. 自动按 ID 找 images/{id}.png
-  //    找到就显示 → 找不到自动回退到占位图（由 onerror 处理）
   return 'images/' + item.id + '.png';
 }
 
@@ -946,13 +473,13 @@ function renderPool(){
 
     const img = getAvatarUrl(item, type);
     const fb = makeAvatar(item.name, type);
-    const sub = item.rank || item.type || item.skill || '';
+    const sub = item.rank || '';
     const click = disabled ? '' : 'onclick="onCardClick(\'' + item.id + '\',\'' + type + '\')"';
 
     return '<div class="' + cls + '" ' + click + '>' +
            '<div class="thumb"><img src="' + esc(img) + '" onerror="this.onerror=null;this.src=\'' + fb + '\'"></div>' +
            '<div class="name">' + esc(item.name) + '</div>' +
-           '<div class="rank">' + esc(sub) + '</div>' +
+           (sub ? '<div class="rank">' + esc(sub) + '</div>' : '') +
            badges +
            '</div>';
   }).join('');
@@ -1130,15 +657,10 @@ function saveBPHistory(){
     blueBans: [...blueBans], redBans: [...redBans],
     bluePicks: [...bluePicks], redPicks: [...redPicks],
     blueScrolls: [...blueScrolls], redScrolls: [...redScrolls],
-    blueSummons: [...blueSummons], redSummons: [...redSummons]
+    blueSummons: [...blueSummons], redSummons: [...redSummons],
+    winner: null, resultType: null
   };
-  const history = getBPHistory();
-  history.unshift(record);
-  if(history.length > 50) history.length = 50;
-  try { localStorage.setItem('naruto_bp_history', JSON.stringify(history)); }
-  catch(e){ alert('存储空间不足，无法保存历史记录'); return; }
-  renderHistory();
-  alert('✅ BP记录已保存');
+  openResultModal(record);
 }
 
 function renderHistory(){
@@ -1151,15 +673,30 @@ function renderHistory(){
   container.innerHTML = history.map(r => {
     const blueBanStr = r.blueBans.map(id => getName(id,'ninja')).join('、') || '无';
     const redBanStr = r.redBans.map(id => getName(id,'ninja')).join('、') || '无';
+    const resultText = getResultText(r);
+    const resultCls = r.winner === 'blue' ? 'blue' : (r.winner === 'red' ? 'red' : 'none');
     return '<div class="history-item">' +
       '<div class="history-time">' + esc(r.time) + '</div>' +
       '<div class="history-names">' + esc(r.blueName) + ' vs ' + esc(r.redName) + '</div>' +
+      '<div class="history-result ' + resultCls + '">' + esc(resultText) + '</div>' +
       '<div class="history-summary">蓝禁：' + esc(blueBanStr) + '<br>红禁：' + esc(redBanStr) + '</div>' +
       '<div class="history-actions">' +
         '<button onclick="loadHistory(\'' + r.id + '\')">回放</button>' +
+        '<button onclick="editResult(\'' + r.id + '\')">改赛果</button>' +
         '<button class="danger" onclick="deleteHistory(\'' + r.id + '\')">删除</button>' +
       '</div></div>';
   }).join('');
+}
+
+function getResultText(r){
+  if(!r.winner) return '⏸ 未记录赛果';
+  const winnerName = r.winner === 'blue' ? (r.blueName || '蓝方') : (r.redName || '红方');
+  const flag = r.winner === 'blue' ? '🔵' : '🔴';
+  let resultText = '';
+  if(r.resultType === 'perfect') resultText = ' · 完胜';
+  else if(r.resultType === 'reverse3') resultText = ' · 反三';
+  else resultText = ' · 胜';
+  return flag + ' ' + winnerName + resultText;
 }
 
 function loadHistory(id){
@@ -1197,6 +734,93 @@ function clearHistory(){
   renderHistory();
 }
 
+/* ==================== 赛果记录 ==================== */
+function openResultModal(record){
+  pendingRecord = record;
+  editingId = null;
+  pendingResult = {winner: 'blue', resultType: 'normal'};
+  updateResultUI();
+  document.getElementById('resultMatchInfo').textContent =
+    (record.blueName || '蓝方') + '  vs  ' + (record.redName || '红方');
+  document.getElementById('resultModal').classList.add('show');
+}
+
+function editResult(id){
+  const r = getBPHistory().find(x => x.id === id);
+  if(!r) return;
+  editingId = id;
+  pendingResult = {
+    winner: r.winner || 'blue',
+    resultType: r.resultType || 'normal'
+  };
+  pendingRecord = {
+    id: r.id, time: r.time,
+    blueName: r.blueName, redName: r.redName,
+    blueBans: r.blueBans, redBans: r.redBans,
+    bluePicks: r.bluePicks, redPicks: r.redPicks,
+    blueScrolls: r.blueScrolls, redScrolls: r.redScrolls,
+    blueSummons: r.blueSummons, redSummons: r.redSummons
+  };
+  updateResultUI();
+  document.getElementById('resultMatchInfo').textContent =
+    (r.blueName || '蓝方') + '  vs  ' + (r.redName || '红方') + '（修改赛果）';
+  document.getElementById('resultModal').classList.add('show');
+}
+
+function closeResultModal(){
+  document.getElementById('resultModal').classList.remove('show');
+  pendingRecord = null;
+  editingId = null;
+}
+
+function selectWinner(w){
+  pendingResult.winner = w;
+  updateResultUI();
+}
+
+function selectResultType(t){
+  pendingResult.resultType = t;
+  updateResultUI();
+}
+
+function updateResultUI(){
+  document.querySelectorAll('#resultModal .choice-btn').forEach(btn => {
+    if(btn.dataset.winner){
+      btn.classList.toggle('active', btn.dataset.winner === pendingResult.winner);
+    }
+    if(btn.dataset.result){
+      btn.classList.toggle('active', btn.dataset.result === pendingResult.resultType);
+    }
+  });
+}
+
+function confirmResult(){
+  if(!pendingRecord) return;
+  pendingRecord.winner = pendingResult.winner;
+  pendingRecord.resultType = pendingResult.resultType;
+
+  const history = getBPHistory();
+
+  if(editingId){
+    // 编辑模式：找到原记录替换
+    const idx = history.findIndex(x => x.id === editingId);
+    if(idx >= 0) history[idx] = pendingRecord;
+    try { localStorage.setItem('naruto_bp_history', JSON.stringify(history)); }
+    catch(e){ alert('存储空间不足，无法保存'); return; }
+    editingId = null;
+  } else {
+    // 新记录：插入最前
+    history.unshift(pendingRecord);
+    if(history.length > 50) history.length = 50;
+    try { localStorage.setItem('naruto_bp_history', JSON.stringify(history)); }
+    catch(e){ alert('存储空间不足，无法保存历史记录'); return; }
+  }
+
+  renderHistory();
+  closeResultModal();
+  alert('✅ 赛果已保存');
+}
+
 /* ==================== 重置 ==================== */
 function resetBP(){
   if(!confirm('确定重置当前BP？')) return;
@@ -1228,10 +852,8 @@ function updateAddForm(){
   const extra = document.getElementById('addExtra');
   if(type === 'ninja'){
     extra.innerHTML = '<label>等级<select id="addRank"><option>S</option><option>A</option><option>B</option><option>C</option></select></label>';
-  } else if(type === 'scroll'){
-    extra.innerHTML = '<label>类型<input id="addScrollType" placeholder="如：火遁、禁术"></label>';
   } else {
-    extra.innerHTML = '<label>技能<input id="addSummonSkill" placeholder="如：猿魔乱舞"></label>';
+    extra.innerHTML = '';
   }
 }
 
@@ -1260,10 +882,8 @@ function addItem(){
     item.rank = document.getElementById('addRank').value;
     customData.ninjas.push(item);
   } else if(type === 'scroll'){
-    item.type = (document.getElementById('addScrollType')?.value || '自定义').trim();
     customData.scrolls.push(item);
   } else {
-    item.skill = (document.getElementById('addSummonSkill')?.value || '').trim();
     customData.summons.push(item);
   }
 
@@ -1277,7 +897,7 @@ function addItem(){
 /* ==================== 导入导出 ==================== */
 function exportData(){
   const data = {
-    version: 3,
+    version: 4,
     exportTime: new Date().toISOString(),
     custom: customData,
     history: getBPHistory(),
@@ -1342,6 +962,9 @@ document.getElementById('addModal').addEventListener('click', function(e){
 });
 document.getElementById('avatarModal').addEventListener('click', function(e){
   if(e.target === this) closeAvatarModal();
+});
+document.getElementById('resultModal').addEventListener('click', function(e){
+  if(e.target === this) closeResultModal();
 });
 </script>
 </body>
