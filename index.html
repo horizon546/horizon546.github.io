@@ -22,15 +22,15 @@ h1{font-size:18px;color:#f0c040;margin-right:8px;white-space:nowrap;text-shadow:
 #status{flex:1;background:rgba(13,17,23,.8);padding:8px 14px;border-radius:8px;font-weight:700;color:#f0c040;min-width:180px;font-size:13px;border:1px solid rgba(48,54,61,.8);letter-spacing:.5px}
 button{background:rgba(33,38,45,.8);color:#e6edf3;border:1px solid rgba(48,54,61,.8);padding:8px 14px;border-radius:8px;cursor:pointer;font-size:13px;font-weight:700;transition:.2s;white-space:nowrap;backdrop-filter:blur(4px)}
 button:hover{background:rgba(48,54,61,.9);border-color:rgba(240,192,64,.5);color:#f0c040;transform:translateY(-1px)}
+button:disabled{opacity:.4;cursor:not-allowed;transform:none!important}
 button.primary{background:rgba(35,134,54,.8);border-color:rgba(46,160,67,.8);color:#fff}
 button.primary:hover{background:rgba(46,160,67,.9);border-color:#2ea043;box-shadow:0 0 15px rgba(46,160,67,.4)}
 button.danger{background:rgba(160,48,48,.8);border-color:rgba(192,64,64,.8);color:#fff}
 button.danger:hover{background:rgba(192,64,64,.9);border-color:#c04040;box-shadow:0 0 15px rgba(192,64,64,.4)}
-button.avatar-btn{background:rgba(111,66,193,.8);border-color:rgba(137,87,229,.8);color:#fff}
-button.avatar-btn:hover{background:rgba(137,87,229,.9);border-color:#8957e5;box-shadow:0 0 15px rgba(137,87,229,.4)}
-button.avatar-btn.active{background:#f0c040;color:#0d1117;border-color:#f0c040;font-weight:900;box-shadow:0 0 20px rgba(240,192,64,.6)}
-label.file-btn{background:rgba(33,38,45,.8);color:#e6edf3;border:1px solid rgba(48,54,61,.8);padding:8px 14px;border-radius:8px;cursor:pointer;font-size:13px;font-weight:700;transition:.2s;display:inline-block;backdrop-filter:blur(4px)}
-label.file-btn:hover{background:rgba(48,54,61,.9);border-color:rgba(240,192,64,.5);color:#f0c040}
+button.undo-btn{background:rgba(240,192,64,.15);border-color:rgba(240,192,64,.4);color:#f0c040}
+button.undo-btn:hover{background:rgba(240,192,64,.25);border-color:#f0c040}
+button.stats-btn{background:rgba(59,130,246,.15);border-color:rgba(59,130,246,.4);color:#58a6ff}
+button.stats-btn:hover{background:rgba(59,130,246,.25);border-color:#3b82f6;color:#58a6ff}
 
 main{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
 .side{background:rgba(22,27,34,.7);border-radius:16px;padding:16px;border:1px solid rgba(48,54,61,.6);backdrop-filter:blur(8px);transition:.3s;position:relative;overflow:hidden}
@@ -64,8 +64,6 @@ main{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
 .card:hover{background:rgba(30,38,50,.9);transform:translateY(-4px);border-color:rgba(240,192,64,.5);box-shadow:0 8px 20px rgba(0,0,0,.4),0 0 15px rgba(240,192,64,.15)}
 .card.used{opacity:.35;cursor:not-allowed;filter:grayscale(.8);transform:none!important;border-color:rgba(48,54,61,.6)!important;box-shadow:none!important}
 .card.used:hover{transform:none!important;border-color:rgba(48,54,61,.6)!important}
-.card.avatar-mode{cursor:crosshair;border-color:rgba(137,87,229,.6)}
-.card.avatar-mode:hover{border-color:#f0c040;box-shadow:0 0 20px rgba(240,192,64,.4),0 0 40px rgba(240,192,64,.1)}
 .card .thumb{width:70px;height:70px;margin-bottom:6px;border-radius:10px;overflow:hidden;background:rgba(22,27,34,.8);display:flex;align-items:center;justify-content:center;border:1px solid rgba(48,54,61,.4);flex-shrink:0}
 .card .thumb img{width:100%;height:100%;object-fit:cover}
 .card .name{font-weight:700;line-height:1.3;margin-bottom:2px;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;min-height:28px;word-break:break-all;color:#e6edf3;font-size:11px}
@@ -94,14 +92,22 @@ main{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
 @keyframes fadeIn{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}
 .modal-content{background:rgba(22,27,34,.95);padding:24px;border-radius:16px;width:420px;max-width:100%;display:flex;flex-direction:column;gap:14px;border:1px solid rgba(240,192,64,.2);box-shadow:0 20px 60px rgba(0,0,0,.8);max-height:90vh;overflow-y:auto}
 .modal-content h3{font-size:16px;color:#f0c040;letter-spacing:2px;text-align:center;text-shadow:0 0 10px rgba(240,192,64,.3)}
-.modal-content label{display:flex;flex-direction:column;gap:8px;font-size:13px;color:#8b949e;font-weight:700}
-.modal-content input,.modal-content select{background:rgba(13,17,23,.8);border:1px solid rgba(48,54,61,.8);color:#e6edf3;padding:10px 12px;border-radius:8px;font-size:13px;outline:none;width:100%;transition:.2s}
-.modal-content input:focus,.modal-content select:focus{border-color:#f0c040;box-shadow:0 0 12px rgba(240,192,64,.2)}
 .modal-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:8px;flex-wrap:wrap}
-.preview-img{width:110px;height:110px;object-fit:cover;border-radius:12px;border:2px solid rgba(240,192,64,.3);margin-top:8px;align-self:center;box-shadow:0 8px 20px rgba(0,0,0,.5)}
 .hint{font-size:11px;color:#6e7681;line-height:1.6;margin-top:6px;background:rgba(13,17,23,.6);padding:8px 10px;border-radius:6px;border-left:3px solid #f0c040}
 
-/* 赛果选择按钮 */
+/* 统计弹窗专用 */
+.modal-content.stats-modal{width:560px}
+.stats-body{display:flex;flex-direction:column;gap:6px;max-height:60vh;overflow-y:auto;padding-right:4px}
+.stat-row{display:grid;grid-template-columns:1.5fr 1fr 1.5fr 0.6fr;gap:8px;padding:10px 12px;background:rgba(13,17,23,.6);border:1px solid rgba(48,54,61,.6);border-radius:8px;font-size:12px;align-items:center}
+.stat-row:hover{background:rgba(30,38,50,.8);border-color:rgba(240,192,64,.4)}
+.stat-name{color:#e6edf3;font-weight:900;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.stat-record{color:#8b949e}
+.stat-record b{color:#f0c040;font-size:13px}
+.stat-detail{color:#6e7681;font-size:11px}
+.stat-rate{color:#58a6ff;font-weight:900;text-align:right;font-size:14px}
+.stat-empty{color:#8b949e;padding:30px 16px;font-size:13px;text-align:center;line-height:1.8}
+.stat-empty .big{font-size:32px;display:block;margin-bottom:10px;opacity:.5}
+
 .choice-group{display:flex;gap:8px;flex-wrap:wrap}
 .choice-btn{flex:1;min-width:80px;padding:12px 8px;background:rgba(13,17,23,.8);border:2px solid rgba(48,54,61,.8);border-radius:10px;cursor:pointer;transition:.2s;font-weight:700;font-size:13px;color:#c9d1d9;text-align:center}
 .choice-btn:hover{background:rgba(30,38,50,.9);border-color:rgba(240,192,64,.4);transform:translateY(-2px)}
@@ -124,6 +130,9 @@ main{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
   .modal-content{padding:16px}
   button{padding:7px 10px;font-size:12px}
   .tab{padding:6px 14px;font-size:12px}
+  .stat-row{grid-template-columns:1fr 1fr;font-size:11px}
+  .stat-rate{text-align:left}
+  .modal-content.stats-modal{width:100%}
 }
 </style>
 </head>
@@ -134,12 +143,10 @@ main{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
   <input id="blueNameInput" class="name-input blue" placeholder="蓝方选手" oninput="setPlayerName('blue',this.value)">
   <input id="redNameInput" class="name-input red" placeholder="红方选手" oninput="setPlayerName('red',this.value)">
   <div id="status">准备开始</div>
-  <button id="avatarModeBtn" class="avatar-btn" onclick="toggleAvatarMode()">🖼 设置头像</button>
+  <button class="undo-btn" id="undoBtn" onclick="undo()" disabled title="Ctrl+Z">↶ 撤销</button>
+  <button class="stats-btn" onclick="openStatsModal()">📊 赛果统计</button>
   <button class="primary" onclick="saveBPHistory()">💾 保存记录</button>
   <button onclick="resetBP()">重置BP</button>
-  <button onclick="openAddModal()">+ 添加内容</button>
-  <button onclick="exportData()">导出数据</button>
-  <label class="file-btn">导入数据<input type="file" hidden accept=".json" onchange="importData(event)"></label>
 </header>
 
 <main>
@@ -183,56 +190,7 @@ main{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
   <div id="historyList"></div>
 </section>
 
-<!-- 添加内容弹窗 -->
-<div id="addModal" class="modal">
-  <div class="modal-content">
-    <h3>添加新内容</h3>
-    <label>类型
-      <select id="addType" onchange="updateAddForm()">
-        <option value="ninja">忍者</option>
-        <option value="scroll">秘卷</option>
-        <option value="summon">通灵</option>
-      </select>
-    </label>
-    <label>名称
-      <input id="addName" placeholder="如：漩涡鸣人「仙人模式」">
-    </label>
-    <div id="addExtra"></div>
-    <label>图片（可选，建议100×100以内）
-      <input type="file" id="addImage" accept="image/*" onchange="previewImage(event)">
-      <img id="imagePreview" class="preview-img" style="display:none">
-    </label>
-    <div class="modal-actions">
-      <button onclick="closeAddModal()">取消</button>
-      <button class="primary" onclick="addItem()">确认添加</button>
-    </div>
-  </div>
-</div>
-
-<!-- 头像设置弹窗 -->
-<div id="avatarModal" class="modal">
-  <div class="modal-content">
-    <h3>设置头像</h3>
-    <div id="avatarItemInfo" style="color:#f0c040;font-size:14px;text-align:center;font-weight:700"></div>
-    <div class="hint" style="margin-top:0">
-      💡 <b>推荐方式（所有人可见）</b>：把图片命名为 <code>images/{ID}.png</code> 上传到仓库的 images 文件夹，这里会自动加载，不用手动设置。
-    </div>
-    <label>📁 上传本地图片（仅自己可见）
-      <input type="file" id="avatarFile" accept="image/*" onchange="previewAvatar(event)">
-    </label>
-    <label>🔗 或输入图片URL / 相对路径
-      <input id="avatarUrl" placeholder="images/n01.png" oninput="previewAvatarUrl(this.value)">
-    </label>
-    <img id="avatarPreview" class="preview-img" style="display:none">
-    <div class="modal-actions">
-      <button class="danger" onclick="clearAvatar()">清除头像</button>
-      <button onclick="closeAvatarModal()">取消</button>
-      <button class="primary" onclick="saveAvatar()">保存</button>
-    </div>
-  </div>
-</div>
-
-<!-- ★ 赛果记录弹窗 -->
+<!-- 赛果记录弹窗 -->
 <div id="resultModal" class="modal">
   <div class="modal-content">
     <h3>⚔️ 记录赛果</h3>
@@ -262,9 +220,23 @@ main{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
   </div>
 </div>
 
+<!-- ★ 赛果统计弹窗 -->
+<div id="statsModal" class="modal">
+  <div class="modal-content stats-modal">
+    <h3>📊 赛果统计</h3>
+    <div class="hint" style="margin-top:0">
+      基于全部历史记录，只统计有赛果的 BP。按出场次数排序。
+    </div>
+    <div id="statsBody" class="stats-body"></div>
+    <div class="modal-actions">
+      <button onclick="closeStatsModal()">关闭</button>
+    </div>
+  </div>
+</div>
+
 <script src="data.js"></script>
 <script>
-/* ==================== 默认数据（已拆分到 data.js） ==================== */
+/* ==================== 默认数据（来自 data.js） ==================== */
 const DEFAULT_NINJAS = window.BP_DATA.ninjas;
 const DEFAULT_SCROLLS = window.BP_DATA.scrolls;
 const DEFAULT_SUMMONS = window.BP_DATA.summons;
@@ -295,7 +267,6 @@ const steps = [
 ];
 
 /* ==================== 状态 ==================== */
-let customData = {ninjas:[], scrolls:[], summons:[]};
 let allNinjas = [], allScrolls = [], allSummons = [];
 let blueBans=[], redBans=[], bluePicks=[], redPicks=[];
 let blueScrolls=[], redScrolls=[], blueSummons=[], redSummons=[];
@@ -303,16 +274,12 @@ let usedNinjas = new Set();
 let stepIndex = 0, stepSelected = 0;
 let bluePlayerName = '', redPlayerName = '';
 let currentTab = 'ninjas';
-let pendingImageData = '';
 
-let avatarMap = {};
-let avatarMode = false;
-let currentAvatarItem = null;
-
-/* 赛果相关 */
 let pendingResult = {winner: 'blue', resultType: 'normal'};
 let pendingRecord = null;
 let editingId = null;
+
+let undoStack = [];
 
 /* ==================== 工具函数 ==================== */
 function makeAvatar(name, type){
@@ -340,9 +307,6 @@ function getName(id, type){
 }
 
 function getAvatarUrl(item, type){
-  if(avatarMap[item.id] && String(avatarMap[item.id]).trim() !== ''){
-    return avatarMap[item.id];
-  }
   if(item.img && String(item.img).trim() !== ''){
     return item.img;
   }
@@ -354,50 +318,62 @@ function esc(s){
                   .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 
+/* ==================== 撤销 ==================== */
+function pushUndo(){
+  undoStack.push({
+    blueBans: [...blueBans], redBans: [...redBans],
+    bluePicks: [...bluePicks], redPicks: [...redPicks],
+    blueScrolls: [...blueScrolls], redScrolls: [...redScrolls],
+    blueSummons: [...blueSummons], redSummons: [...redSummons],
+    usedNinjas: new Set(usedNinjas),
+    stepIndex: stepIndex, stepSelected: stepSelected
+  });
+  if(undoStack.length > 100) undoStack.shift();
+  updateUndoBtn();
+}
+
+function undo(){
+  if(undoStack.length === 0) return;
+  const s = undoStack.pop();
+  blueBans = s.blueBans; redBans = s.redBans;
+  bluePicks = s.bluePicks; redPicks = s.redPicks;
+  blueScrolls = s.blueScrolls; redScrolls = s.redScrolls;
+  blueSummons = s.blueSummons; redSummons = s.redSummons;
+  usedNinjas = s.usedNinjas;
+  stepIndex = s.stepIndex; stepSelected = s.stepSelected;
+  updateUndoBtn();
+  render();
+}
+
+function updateUndoBtn(){
+  const btn = document.getElementById('undoBtn');
+  if(btn) btn.disabled = undoStack.length === 0;
+}
+
 /* ==================== 数据加载 ==================== */
-function loadCustom(){
-  const s = localStorage.getItem('naruto_bp_custom');
-  if(s){ try { customData = JSON.parse(s); } catch(e){ customData = {ninjas:[],scrolls:[],summons:[]}; } }
-  if(!customData.ninjas) customData.ninjas = [];
-  if(!customData.scrolls) customData.scrolls = [];
-  if(!customData.summons) customData.summons = [];
-}
-function saveCustom(){
-  try { localStorage.setItem('naruto_bp_custom', JSON.stringify(customData)); }
-  catch(e){ alert('本地存储空间不足，请减少自定义图片数量或压缩图片尺寸'); }
-}
-function loadAvatars(){
-  const s = localStorage.getItem('naruto_bp_avatars');
-  try { avatarMap = s ? JSON.parse(s) : {}; } catch(e){ avatarMap = {}; }
-}
-function saveAvatars(){
-  try { localStorage.setItem('naruto_bp_avatars', JSON.stringify(avatarMap)); }
-  catch(e){ alert('头像存储空间不足！建议使用图片相对路径（如 images/xxx.png），或压缩图片尺寸'); }
-}
 function mergeData(){
-  allNinjas = [...DEFAULT_NINJAS, ...customData.ninjas];
-  allScrolls = [...DEFAULT_SCROLLS, ...customData.scrolls];
-  allSummons = [...DEFAULT_SUMMONS, ...customData.summons];
+  allNinjas = [...DEFAULT_NINJAS];
+  allScrolls = [...DEFAULT_SCROLLS];
+  allSummons = [...DEFAULT_SUMMONS];
 }
 
 /* ==================== 渲染 ==================== */
 function render(){
   const st = document.getElementById('status');
   const step = steps[stepIndex] || steps[steps.length-1];
-  if(!avatarMode) st.textContent = step.label;
+  st.textContent = step.label;
 
-  if(!avatarMode){
-    if(step.type === 'ban' || step.type === 'pick'){
-      if(currentTab !== 'ninjas') switchTab('ninjas', true);
-    } else if(step.type === 'scroll'){
-      if(currentTab !== 'scrolls') switchTab('scrolls', true);
-    } else if(step.type === 'summon'){
-      if(currentTab !== 'summons') switchTab('summons', true);
-    }
+  if(step.type === 'ban' || step.type === 'pick'){
+    if(currentTab !== 'ninjas') switchTab('ninjas', true);
+  } else if(step.type === 'scroll'){
+    if(currentTab !== 'scrolls') switchTab('scrolls', true);
+  } else if(step.type === 'summon'){
+    if(currentTab !== 'summons') switchTab('summons', true);
   }
 
   updateTeamPanels();
   renderPool();
+  updateUndoBtn();
 }
 
 function updateTeamPanels(){
@@ -409,7 +385,7 @@ function updateTeamPanels(){
       const img = getAvatarUrl(item, type);
       const fb = makeAvatar(item.name, type);
       return '<div class="mini-card ' + cls + '" title="' + esc(item.name) + '">' +
-             '<img src="' + esc(img) + '" onerror="this.onerror=null;this.src=\'' + fb + '\'">' +
+             '<img loading="lazy" src="' + esc(img) + '" onerror="this.onerror=null;this.src=\'' + fb + '\'">' +
              '</div>';
     }).join('');
   }
@@ -455,7 +431,7 @@ function renderPool(){
     if(type === 'ninja'){
       if(usedNinjas.has(item.id)){
         cls += ' used';
-        disabled = avatarMode ? false : true;
+        disabled = true;
         if(blueBans.includes(item.id)) badges = '<div class="badge ban">蓝禁</div>';
         else if(redBans.includes(item.id)) badges = '<div class="badge ban">红禁</div>';
         else if(bluePicks.includes(item.id)) badges = '<div class="badge blue">蓝选</div>';
@@ -469,15 +445,13 @@ function renderPool(){
       if(redSummons.includes(item.id)) badges += '<div class="badge red">红</div>';
     }
 
-    if(avatarMode) cls += ' avatar-mode';
-
     const img = getAvatarUrl(item, type);
     const fb = makeAvatar(item.name, type);
     const sub = item.rank || '';
     const click = disabled ? '' : 'onclick="onCardClick(\'' + item.id + '\',\'' + type + '\')"';
 
     return '<div class="' + cls + '" ' + click + '>' +
-           '<div class="thumb"><img src="' + esc(img) + '" onerror="this.onerror=null;this.src=\'' + fb + '\'"></div>' +
+           '<div class="thumb"><img loading="lazy" src="' + esc(img) + '" onerror="this.onerror=null;this.src=\'' + fb + '\'"></div>' +
            '<div class="name">' + esc(item.name) + '</div>' +
            (sub ? '<div class="rank">' + esc(sub) + '</div>' : '') +
            badges +
@@ -487,11 +461,6 @@ function renderPool(){
 
 /* ==================== 点击卡片 ==================== */
 function onCardClick(id, type){
-  if(avatarMode){
-    openAvatarModal(id, type);
-    return;
-  }
-
   if(stepIndex >= steps.length) return;
   const step = steps[stepIndex];
   if(step.type === 'done') return;
@@ -510,6 +479,8 @@ function onCardClick(id, type){
     if(team === 'blue' && blueSummons.includes(id)) return;
     if(team === 'red' && redSummons.includes(id)) return;
   }
+
+  pushUndo();
 
   if(ct === 'ban'){
     if(team === 'blue') blueBans.push(id); else redBans.push(id);
@@ -531,103 +502,23 @@ function onCardClick(id, type){
   render();
 }
 
-/* ==================== 头像模式 ==================== */
-function toggleAvatarMode(){
-  avatarMode = !avatarMode;
-  const btn = document.getElementById('avatarModeBtn');
-  btn.classList.toggle('active', avatarMode);
-  btn.textContent = avatarMode ? '✅ 头像模式' : '🖼 设置头像';
-  const st = document.getElementById('status');
-  if(avatarMode){
-    st.textContent = '🖼 头像模式：点击任意卡片设置头像（不再触发BP）';
-    st.style.color = '#f0c040';
-  } else {
-    st.textContent = steps[stepIndex]?.label || '准备开始';
-    st.style.color = '#58a6ff';
-  }
-  renderPool();
-}
-
-function openAvatarModal(id, type){
-  const item = getItem(id, type);
-  if(!item) return;
-  currentAvatarItem = {id, type, name: item.name};
-
-  document.getElementById('avatarItemInfo').textContent =
-    '🎯 ' + item.name + '（ID：' + id + '）';
-
-  const current = avatarMap[id] || item.img || '';
-  const preview = document.getElementById('avatarPreview');
-  if(current){
-    preview.src = current;
-    preview.style.display = '';
-  } else {
-    preview.style.display = 'none';
-    preview.src = '';
-  }
-  preview.dataset.dataUrl = current;
-
-  document.getElementById('avatarFile').value = '';
-  document.getElementById('avatarUrl').value = '';
-
-  document.getElementById('avatarModal').classList.add('show');
-}
-
-function closeAvatarModal(){
-  document.getElementById('avatarModal').classList.remove('show');
-  currentAvatarItem = null;
-}
-
-function previewAvatar(e){
-  const file = e.target.files[0];
-  if(!file) return;
-  const reader = new FileReader();
-  reader.onload = ev => {
-    const preview = document.getElementById('avatarPreview');
-    preview.src = ev.target.result;
-    preview.style.display = '';
-    preview.dataset.dataUrl = ev.target.result;
-    document.getElementById('avatarUrl').value = '';
-  };
-  reader.readAsDataURL(file);
-}
-
-function previewAvatarUrl(url){
-  if(!url) return;
-  const preview = document.getElementById('avatarPreview');
-  preview.src = url;
-  preview.style.display = '';
-  preview.dataset.dataUrl = url;
-  document.getElementById('avatarFile').value = '';
-}
-
-function saveAvatar(){
-  if(!currentAvatarItem) return;
-  const preview = document.getElementById('avatarPreview');
-  const dataUrl = preview.dataset.dataUrl;
-  if(!dataUrl){
-    alert('请先上传图片或填写图片URL');
-    return;
-  }
-  avatarMap[currentAvatarItem.id] = dataUrl;
-  saveAvatars();
-  closeAvatarModal();
-  render();
-}
-
-function clearAvatar(){
-  if(!currentAvatarItem) return;
-  if(!confirm('清除「' + currentAvatarItem.name + '」的头像？')) return;
-  delete avatarMap[currentAvatarItem.id];
-  saveAvatars();
-  closeAvatarModal();
-  render();
-}
-
 /* ==================== 选手名字 ==================== */
 function setPlayerName(team, name){
-  if(team === 'blue') bluePlayerName = name.trim();
-  else redPlayerName = name.trim();
+  if(team === 'blue'){
+    bluePlayerName = name.trim();
+    localStorage.setItem('naruto_bp_player_blue', bluePlayerName);
+  } else {
+    redPlayerName = name.trim();
+    localStorage.setItem('naruto_bp_player_red', redPlayerName);
+  }
+  updatePlayerDisplay();
+}
+
+function loadPlayerNames(){
+  bluePlayerName = localStorage.getItem('naruto_bp_player_blue') || '';
+  redPlayerName = localStorage.getItem('naruto_bp_player_red') || '';
+  document.getElementById('blueNameInput').value = bluePlayerName;
+  document.getElementById('redNameInput').value = redPlayerName;
   updatePlayerDisplay();
 }
 
@@ -703,6 +594,8 @@ function loadHistory(id){
   const r = getBPHistory().find(x => x.id === id);
   if(!r) return;
   if(!confirm('加载 ' + r.blueName + ' vs ' + r.redName + ' 的BP记录？当前BP将被覆盖。')) return;
+
+  pushUndo();
 
   blueBans = [...r.blueBans]; redBans = [...r.redBans];
   bluePicks = [...r.bluePicks]; redPicks = [...r.redPicks];
@@ -802,16 +695,14 @@ function confirmResult(){
   const history = getBPHistory();
 
   if(editingId){
-    // 编辑模式：找到原记录替换
     const idx = history.findIndex(x => x.id === editingId);
     if(idx >= 0) history[idx] = pendingRecord;
     try { localStorage.setItem('naruto_bp_history', JSON.stringify(history)); }
     catch(e){ alert('存储空间不足，无法保存'); return; }
     editingId = null;
   } else {
-    // 新记录：插入最前
     history.unshift(pendingRecord);
-    if(history.length > 50) history.length = 50;
+    if(history.length > 100) history.length = 100;
     try { localStorage.setItem('naruto_bp_history', JSON.stringify(history)); }
     catch(e){ alert('存储空间不足，无法保存历史记录'); return; }
   }
@@ -821,9 +712,72 @@ function confirmResult(){
   alert('✅ 赛果已保存');
 }
 
+/* ==================== 赛果统计（弹窗） ==================== */
+function openStatsModal(){
+  renderStatsBody();
+  document.getElementById('statsModal').classList.add('show');
+}
+
+function closeStatsModal(){
+  document.getElementById('statsModal').classList.remove('show');
+}
+
+function renderStatsBody(){
+  const history = getBPHistory();
+  const stats = {};
+
+  history.forEach(r => {
+    if(!r.winner) return;
+    const blueName = r.blueName || '蓝方';
+    const redName = r.redName || '红方';
+
+    if(!stats[blueName]) stats[blueName] = {win:0, lose:0, perfect:0, reverse3:0, total:0};
+    if(!stats[redName]) stats[redName] = {win:0, lose:0, perfect:0, reverse3:0, total:0};
+
+    stats[blueName].total++;
+    stats[redName].total++;
+
+    if(r.winner === 'blue'){
+      stats[blueName].win++;
+      stats[redName].lose++;
+      if(r.resultType === 'perfect') stats[blueName].perfect++;
+      if(r.resultType === 'reverse3') stats[blueName].reverse3++;
+    } else if(r.winner === 'red'){
+      stats[redName].win++;
+      stats[blueName].lose++;
+      if(r.resultType === 'perfect') stats[redName].perfect++;
+      if(r.resultType === 'reverse3') stats[redName].reverse3++;
+    }
+  });
+
+  const container = document.getElementById('statsBody');
+  const entries = Object.entries(stats).sort((a,b) => b[1].total - a[1].total);
+
+  if(entries.length === 0){
+    container.innerHTML =
+      '<div class="stat-empty">' +
+      '<span class="big">📊</span>' +
+      '还没有统计数据<br>' +
+      '完成一场带赛果的 BP 后会自动生成' +
+      '</div>';
+    return;
+  }
+
+  container.innerHTML = entries.map(([name, s]) => {
+    const winRate = s.total ? Math.round(s.win / s.total * 100) : 0;
+    return '<div class="stat-row">' +
+      '<div class="stat-name" title="' + esc(name) + '">' + esc(name) + '</div>' +
+      '<div class="stat-record"><b>' + s.win + '</b>胜 <b>' + s.lose + '</b>负</div>' +
+      '<div class="stat-detail">完胜 ' + s.perfect + ' · 反三 ' + s.reverse3 + '</div>' +
+      '<div class="stat-rate">' + winRate + '%</div>' +
+      '</div>';
+  }).join('');
+}
+
 /* ==================== 重置 ==================== */
 function resetBP(){
   if(!confirm('确定重置当前BP？')) return;
+  pushUndo();
   blueBans=[]; redBans=[]; bluePicks=[]; redPicks=[];
   blueScrolls=[]; redScrolls=[]; blueSummons=[]; redSummons=[];
   usedNinjas = new Set();
@@ -831,140 +785,42 @@ function resetBP(){
   render();
 }
 
-/* ==================== 添加自定义内容 ==================== */
-function openAddModal(){
-  document.getElementById('addModal').classList.add('show');
-  document.getElementById('addName').value = '';
-  pendingImageData = '';
-  const prev = document.getElementById('imagePreview');
-  prev.style.display = 'none';
-  prev.src = '';
-  document.getElementById('addImage').value = '';
-  updateAddForm();
-}
-
-function closeAddModal(){
-  document.getElementById('addModal').classList.remove('show');
-}
-
-function updateAddForm(){
-  const type = document.getElementById('addType').value;
-  const extra = document.getElementById('addExtra');
-  if(type === 'ninja'){
-    extra.innerHTML = '<label>等级<select id="addRank"><option>S</option><option>A</option><option>B</option><option>C</option></select></label>';
-  } else {
-    extra.innerHTML = '';
+/* ==================== 快捷键 ==================== */
+document.addEventListener('keydown', function(e){
+  if((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'z'){
+    e.preventDefault();
+    undo();
+    return;
   }
-}
-
-function previewImage(e){
-  const file = e.target.files[0];
-  if(!file) return;
-  const reader = new FileReader();
-  reader.onload = ev => {
-    pendingImageData = ev.target.result;
-    const prev = document.getElementById('imagePreview');
-    prev.src = pendingImageData;
-    prev.style.display = '';
-  };
-  reader.readAsDataURL(file);
-}
-
-function addItem(){
-  const type = document.getElementById('addType').value;
-  const name = document.getElementById('addName').value.trim();
-  if(!name){ alert('请输入名称'); return; }
-
-  const id = 'custom_' + type + '_' + Date.now();
-  const item = {id, name, img: pendingImageData || ''};
-
-  if(type === 'ninja'){
-    item.rank = document.getElementById('addRank').value;
-    customData.ninjas.push(item);
-  } else if(type === 'scroll'){
-    customData.scrolls.push(item);
-  } else {
-    customData.summons.push(item);
+  if(e.key === 'Escape'){
+    closeResultModal();
+    closeStatsModal();
+    return;
   }
-
-  saveCustom();
-  mergeData();
-  closeAddModal();
-  render();
-  alert('✅ 已添加：' + name);
-}
-
-/* ==================== 导入导出 ==================== */
-function exportData(){
-  const data = {
-    version: 4,
-    exportTime: new Date().toISOString(),
-    custom: customData,
-    history: getBPHistory(),
-    avatars: avatarMap
-  };
-  const blob = new Blob([JSON.stringify(data, null, 2)], {type:'application/json'});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'naruto_bp_data_' + Date.now() + '.json';
-  a.click();
-  URL.revokeObjectURL(url);
-}
-
-function importData(e){
-  const file = e.target.files[0];
-  if(!file) return;
-  const reader = new FileReader();
-  reader.onload = function(ev){
-    try {
-      const data = JSON.parse(ev.target.result);
-      if(data.custom){
-        customData = data.custom;
-        if(!customData.ninjas) customData.ninjas = [];
-        if(!customData.scrolls) customData.scrolls = [];
-        if(!customData.summons) customData.summons = [];
-        saveCustom();
-      }
-      if(data.history && Array.isArray(data.history)){
-        localStorage.setItem('naruto_bp_history', JSON.stringify(data.history));
-      }
-      if(data.avatars && typeof data.avatars === 'object'){
-        avatarMap = data.avatars;
-        saveAvatars();
-      }
-      mergeData();
-      render();
-      renderHistory();
-      alert('✅ 导入成功');
-    } catch(err){
-      alert('导入失败：' + err.message);
-    }
-  };
-  reader.readAsText(file);
-  e.target.value = '';
-}
+  if(e.key >= '1' && e.key <= '9' && !e.ctrlKey && !e.metaKey && !e.altKey){
+    const ae = document.activeElement;
+    if(ae && (ae.tagName === 'INPUT' || ae.tagName === 'SELECT' || ae.tagName === 'TEXTAREA')) return;
+    if(document.querySelector('.modal.show')) return;
+    const idx = parseInt(e.key, 10) - 1;
+    const cards = document.querySelectorAll('#poolGrid .card:not(.used)');
+    if(cards[idx]){ e.preventDefault(); cards[idx].click(); }
+  }
+});
 
 /* ==================== 初始化 ==================== */
 window.addEventListener('load', function(){
-  loadCustom();
-  loadAvatars();
   mergeData();
-  updateAddForm();
+  loadPlayerNames();
   switchTab('ninjas', true);
   render();
   renderHistory();
-  updatePlayerDisplay();
 });
 
-document.getElementById('addModal').addEventListener('click', function(e){
-  if(e.target === this) closeAddModal();
-});
-document.getElementById('avatarModal').addEventListener('click', function(e){
-  if(e.target === this) closeAvatarModal();
-});
 document.getElementById('resultModal').addEventListener('click', function(e){
   if(e.target === this) closeResultModal();
+});
+document.getElementById('statsModal').addEventListener('click', function(e){
+  if(e.target === this) closeStatsModal();
 });
 </script>
 </body>
